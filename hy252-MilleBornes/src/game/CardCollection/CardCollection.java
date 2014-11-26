@@ -3,17 +3,16 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CardCollection;
+package game.CardCollection;
 
+import game.Cards.Type.CardType;
 import game.Cards.Card;
 import java.util.ArrayList;
 
 /**
  * This card represent a collection of cards. Extensions of this
  * class could be card collection with special characteristics.
- * For example, a card collection of only one card could be Monofylia
- * and therefore it is compatible with rounds playing Monophylia.
- * To this end, this class contain a method named getType which descibe
+ * To this end, this class contain a method named getType which describe
  * the compatible type. Plz note that there is no transformer to the "type"
  * attribute. (Children override the accessor by returning type appropriately)
  * @author Author
@@ -21,44 +20,76 @@ import java.util.ArrayList;
 public class CardCollection 
 {
     private ArrayList<Card> cards;
-    private PileType type;
+    private CardType type;
 
     /**
      * The constructor for building a new instance of a CardCollection
      * No parameters! Therefore, no specific type and actually no cards
      * inside!
      */
-    public CardCollection()
+    public CardCollection( )
     {
         cards = new ArrayList<Card>();
-        type = PileType.UNGATEGORIZED;
+        type = CardType.UNGATEGORIZED;
+    }
+    
+    /**
+     * The constructor for building a new instance of a CardCollection
+     * No parameters! Therefore, no specific type and actually no cards
+     * inside!
+     */
+    public CardCollection(int size)
+    {
+        cards = new ArrayList<Card>(size);
+        type = CardType.UNGATEGORIZED;
+    }
+    
+    /**
+     * The constructor for building a new instance of a CardCollection
+     * No parameters! Therefore, no specific type and actually no cards
+     * inside!
+     */
+    public CardCollection(CardType t, int size)
+    {
+        cards = new ArrayList<Card>(size);
+        type = t;
+    }
+    
+    /**
+     * The constructor for building a new instance of a CardCollection
+     * No parameters! Therefore, no specific type and actually no cards
+     * inside!
+     */
+    public CardCollection(CardType t)
+    {
+        cards = new ArrayList<Card>();
+        type = t;
     }
 
     /**
      * The constructor for building a new instance of a CardCollection
-     * with given cards and actually no specific type!! (e.g. mpazes, xeria 
-     * and dropped cards could be a case)
+     * with given cards and actually no specific type!! 
      * @param cards the given cards to create a new CardCollection
      */
     public CardCollection(ArrayList<Card> cards)
     {
         this();
-        this.cards = cards;
+        this.cards.addAll(cards);
     }
 
      /**
      * @param type the type to set
      */
-    public void setType(PileType type) {
+    public void setType(CardType type) {
         this.type = type;
     }
     
     /**
      * The round type to be returned! (Accessor)
-     * See PileType enumeration for further details
+ See CardType enumeration for further details
      * @return the round type
      */
-    public PileType getType() {
+    public CardType getType() {
         return type;
     }
 
@@ -87,7 +118,7 @@ public class CardCollection
      * @throws IncompatibleException Throws a special type of exception in case that parameter's type differs from this one
      * and therefore comparison has no meaning...
      */
-    public boolean IsGreaterThan(CardCollection cCol) throws IncompatiblePileException
+    public boolean IsGreaterThan(CardCollection cCol) throws IncompatibleCardException
     {
         return false;
     }

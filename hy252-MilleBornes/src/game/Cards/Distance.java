@@ -11,8 +11,10 @@ package game.Cards;
  */
 public class Distance extends Card{
     
-    public Distance(){
-        
+    public Distance(int value){
+        super();
+        this.setValue(value);
+        this.setImagePath("/game/images/Miles_"+value+".jpg");
     }
 
     @Override

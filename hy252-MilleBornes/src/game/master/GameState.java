@@ -10,4 +10,4 @@ package game.master;
  * An enumeration for the various game modes
  * @author Author
  */
-public enum GameState { UNSPECIFIED, PLAYING, WAITFORWISH, WAITFORGRANTTICHU, PAUSED, STOPPED, FINISHED};
+public enum GameState { UNSPECIFIED, PLAYING, WAITFORNAMES, PAUSED, STOPPED, FINISHED};

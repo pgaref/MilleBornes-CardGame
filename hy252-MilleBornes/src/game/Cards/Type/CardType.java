@@ -3,10 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package CardCollection;
+package game.Cards.Type;
 
 /**
  *
- * @author pg1712
+ * @author Author
  */
-public enum PileType{ BATTLE, SPEED, DISTANCE, SAFETY, UNGATEGORIZED };
+public enum CardType{ BATTLE, SPEED, DISTANCE, SAFETY, UNGATEGORIZED };
