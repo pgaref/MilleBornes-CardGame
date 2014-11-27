@@ -5,7 +5,7 @@
  */
 package game.master;
 
-import game.CardCollection.CardCollection;
+import game.CardCollection.CardPile;
 import game.Cards.Card;
 import game.Cards.Distance;
 import game.Cards.Type.CardType;
@@ -16,9 +16,12 @@ import java.util.ArrayList;
 /**
  *
  * @author pg1712
+ * 
  */
-public class GameCore implements Game{
+public class GameMaster implements Game{
 
+    
+    
     private Player p1;
     private Player p2;
     private Player currPlayer;
@@ -27,26 +30,22 @@ public class GameCore implements Game{
     private Player Winner;
     private Player lastPlayed;
     
-    private CardCollection tableCards;
-    private CardCollection droppedCards;
+    private Deck table;
+    
+    
 
-    public GameCore(String one, String two) {
+    public GameMaster(String one, String two) {
         this.p1 = new Player(one);
         this.p2 = new Player(two);
+        this.table = new Deck();
+        
         
         this.players = new ArrayList<Player>(2);
         players.add(p1);
         players.add(p2);
         
         this.state = GameState.WAITFORNAMES;
-        this.tableCards = new  CardCollection(CardType.UNGATEGORIZED);
-        this.droppedCards = new CardCollection(CardType.UNGATEGORIZED);
-        //Cards shuffle etc..
-        
-        for(int i = 0 ; i < 50; i++){
-                Card tmp = new Distance(75);
-                this.tableCards.getCards().add(tmp);
-        }
+
         
         this.currPlayer = p1;
     }

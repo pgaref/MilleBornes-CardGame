@@ -4,7 +4,7 @@
  */
 package game.view.panels;
 
-import game.CardCollection.CardCollection;
+import game.CardCollection.CardPile;
 import game.Cards.Card;
 import game.Cards.Distance;
 import game.Player.Player;
@@ -171,7 +171,7 @@ public class HorizontalViewCardPanel extends ViewCardPanel {
         }
     }
 
-    public void setCards(CardCollection cb) {
+    public void setCards(CardPile cb) {
         System.out.println("called : ");
         super.removeAll();
         super.revalidate();

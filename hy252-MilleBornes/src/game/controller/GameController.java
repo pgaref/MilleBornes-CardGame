@@ -5,7 +5,7 @@
  */
 package game.controller;
 
-import game.master.GameCore;
+import game.master.GameMaster;
 import javax.swing.JFrame;
 
 /**
@@ -18,9 +18,9 @@ public class GameController {
 
     
     JFrame view;
-    GameCore model;
+    GameMaster model;
     
-    public GameController(JFrame f, GameCore m){
+    public GameController(JFrame f, GameMaster m){
         this.model = m;
         this.view = f;
     }

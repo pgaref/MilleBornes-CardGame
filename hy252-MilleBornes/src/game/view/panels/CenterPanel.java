@@ -4,10 +4,10 @@
  */
 package game.view.panels;
 
-import game.CardCollection.CardCollection;
+import game.CardCollection.CardPile;
 import game.Cards.Card;
 import game.Player.Player;
-import game.master.GameCore;
+import game.master.GameMaster;
 import java.awt.BorderLayout;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -27,13 +27,13 @@ public class CenterPanel extends javax.swing.JPanel {
     /**
      * Creates new form CenterPanel
      */
-    private GameCore game;
+    private GameMaster game;
     private HorizontalViewCardPanel panel;
     private int playersCount = 0;
     private Player p;
     private PlayersPanel f;
     
-    public CenterPanel(GameCore _game , PlayersPanel theFrame) {
+    public CenterPanel(GameMaster _game , PlayersPanel theFrame) {
         initComponents();
         this.game = _game;
         f = theFrame;
@@ -80,7 +80,7 @@ public class CenterPanel extends javax.swing.JPanel {
         
     }
     
-    public void setCards(CardCollection comb){
+    public void setCards(CardPile comb){
         System.out.println("set CARDS Center panel -> ");
         this.panel.setCards(comb);
     }

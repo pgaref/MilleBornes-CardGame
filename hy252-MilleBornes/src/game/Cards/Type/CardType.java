@@ -9,4 +9,4 @@ package game.Cards.Type;
  *
  * @author Author
  */
-public enum CardType{ BATTLE, SPEED, DISTANCE, SAFETY, UNGATEGORIZED };
+public enum CardType{ BATTLE, SPEED, DISTANCE, SAFETY, UNGATEGORIZED, DISCARD, DRAW };

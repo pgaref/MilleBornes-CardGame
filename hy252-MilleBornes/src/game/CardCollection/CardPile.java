@@ -17,17 +17,17 @@ import java.util.ArrayList;
  * attribute. (Children override the accessor by returning type appropriately)
  * @author Author
  */
-public class CardCollection 
+public class CardPile 
 {
-    private ArrayList<Card> cards;
-    private CardType type;
+    public ArrayList<Card> cards;
+    public CardType type;
 
     /**
      * The constructor for building a new instance of a CardCollection
      * No parameters! Therefore, no specific type and actually no cards
      * inside!
      */
-    public CardCollection( )
+    public CardPile( )
     {
         cards = new ArrayList<Card>();
         type = CardType.UNGATEGORIZED;
@@ -38,7 +38,7 @@ public class CardCollection
      * No parameters! Therefore, no specific type and actually no cards
      * inside!
      */
-    public CardCollection(int size)
+    public CardPile(int size)
     {
         cards = new ArrayList<Card>(size);
         type = CardType.UNGATEGORIZED;
@@ -49,40 +49,18 @@ public class CardCollection
      * No parameters! Therefore, no specific type and actually no cards
      * inside!
      */
-    public CardCollection(CardType t, int size)
-    {
-        cards = new ArrayList<Card>(size);
-        type = t;
-    }
     
-    /**
-     * The constructor for building a new instance of a CardCollection
-     * No parameters! Therefore, no specific type and actually no cards
-     * inside!
-     */
-    public CardCollection(CardType t)
-    {
-        cards = new ArrayList<Card>();
-        type = t;
-    }
-
     /**
      * The constructor for building a new instance of a CardCollection
      * with given cards and actually no specific type!! 
      * @param cards the given cards to create a new CardCollection
      */
-    public CardCollection(ArrayList<Card> cards)
+    public CardPile(ArrayList<Card> cards)
     {
         this();
         this.cards.addAll(cards);
     }
 
-     /**
-     * @param type the type to set
-     */
-    public void setType(CardType type) {
-        this.type = type;
-    }
     
     /**
      * The round type to be returned! (Accessor)
@@ -110,6 +88,7 @@ public class CardCollection
         this.cards = cards;
     }
 
+    
     /**
      * To be overidden. By default it returns false.
      * Calculates if this card collection is greater than the given one (parameter)
@@ -118,9 +97,25 @@ public class CardCollection
      * @throws IncompatibleException Throws a special type of exception in case that parameter's type differs from this one
      * and therefore comparison has no meaning...
      */
-    public boolean IsGreaterThan(CardCollection cCol) throws IncompatibleCardException
+    public boolean IsGreaterThan(CardPile cCol) throws IncompatibleCardException
     {
         return false;
+    }
+    
+    
+    public void addCard(Card tmp) throws NotSupportedOperationException{
+        this.cards.add(tmp);
+    }
+    
+    
+    public Card removeCard(Card c){
+        for(int i =0 ; i < this.cards.size(); i++){
+            if(this.cards.get(i).equals(c))
+                return this.cards.remove(i);
+        }
+        System.out.println("Card: "+ c +" was not found!  ");
+        return null;
+        
     }
 
    

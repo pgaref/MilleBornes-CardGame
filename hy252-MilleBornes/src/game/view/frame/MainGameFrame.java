@@ -6,7 +6,7 @@
 package game.view.frame;
 
 import game.Player.Player;
-import game.master.GameCore;
+import game.master.GameMaster;
 import game.view.client.IGameClient;
 import game.view.panels.GameInfoPanel;
 import game.view.panels.InitPlayers;
@@ -20,7 +20,7 @@ import javax.swing.JFrame;
  */
 public class MainGameFrame extends javax.swing.JFrame implements IGameClient{
 
-    private final GameCore game;
+    private final GameMaster game;
     private final PlayersPanel playersSpace; 
     private final GameInfoPanel gameinfo;
     /**
@@ -30,7 +30,7 @@ public class MainGameFrame extends javax.swing.JFrame implements IGameClient{
         super("MilleBornes Game");
         InitPlayers players = new InitPlayers(null,true);
         Object [] playerNames =  players.getPlayers().toArray();
-        this.game = new GameCore(String.valueOf(playerNames[0]), String.valueOf(playerNames[1]));
+        this.game = new GameMaster(String.valueOf(playerNames[0]), String.valueOf(playerNames[1]));
         
         this.game.initialiazePlayersWithSixCards();
         this.playersSpace = new PlayersPanel(game);

@@ -5,7 +5,7 @@
 package game.view.panels;
 
 import game.Cards.Card;
-import game.master.GameCore;
+import game.master.GameMaster;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -21,11 +21,11 @@ public class GameInfoPanel extends javax.swing.JPanel {
     /**
      * Creates new form test
      */
-    private GameCore game;
+    private GameMaster game;
     private PlayersPanel players;
     private boolean mahjongShow;
     
-    public GameInfoPanel(GameCore _game , PlayersPanel _players) {
+    public GameInfoPanel(GameMaster _game , PlayersPanel _players) {
         initComponents();
         game = _game;
         players = _players;

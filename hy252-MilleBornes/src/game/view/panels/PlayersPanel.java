@@ -13,7 +13,7 @@ import javax.swing.JPanel;
 import game.Cards.*;
 import game.Player.Player;
 import game.CardCollection.*;
-import game.master.GameCore;
+import game.master.GameMaster;
 
 /**
  *
@@ -27,9 +27,9 @@ public class PlayersPanel extends JPanel {
     
     private ViewCardPanel activepanel = null;
     
-    private GameCore game;
+    private GameMaster game;
     
-    public PlayersPanel(GameCore _game){
+    public PlayersPanel(GameMaster _game){
         super();
         this.game = _game;
         center = new CenterPanel(this.game,this);
@@ -91,7 +91,7 @@ public class PlayersPanel extends JPanel {
         center.showMahjongPanel(c,activepanel.getPlayer());
     }
 
-    public void setCards(CardCollection comb) {
+    public void setCards(CardPile comb) {
         center.setCards(comb);
     }
 }
