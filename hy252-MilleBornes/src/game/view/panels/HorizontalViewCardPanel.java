@@ -95,7 +95,7 @@ public class HorizontalViewCardPanel extends ViewCardPanel {
     
     @Override
     public void showCards(){
-        //System.out.println("Horizontal showCards");
+        System.out.println("Horizontal showCards");
     }
     
     public void HideCards(){
@@ -104,7 +104,7 @@ public class HorizontalViewCardPanel extends ViewCardPanel {
         super.repaint();
         this.origin = null;
         int i = 1;
-        if(origin == null){ origin = new Point(200, 0);}
+        if(origin == null){ origin = new Point(100, 0);}
         if(super.isIsMirror()) {
             origin.y = 5;
             name.setForeground(Color.red);
@@ -139,13 +139,13 @@ public class HorizontalViewCardPanel extends ViewCardPanel {
         super.revalidate();
         super.repaint();
         super.name.setText(p.getName());
-        origin = new Point(200, 0);
+        origin = new Point(100, 0);
         this.addCards();
     }
     
     private void addCards(){
         int i = 1;
-        if(origin == null){ origin = new Point(200, 0);}
+        if(origin == null){ origin = new Point(110, 0);}
         if(super.isIsMirror()) {
             origin.y = 5;
             name.setForeground(Color.red);
@@ -167,7 +167,7 @@ public class HorizontalViewCardPanel extends ViewCardPanel {
         for(Card c : super.getPlayer().getPlayersHand().getCards()){
             ViewCard card = new ViewCard(c,origin,super.isIsMirror() ? Direction.UP : Direction.DOWN,super.getImage_dir());
             super.add(card,new Integer(i++));
-            origin.x += 25;
+            origin.x += 100;
         }
     }
 
@@ -178,7 +178,7 @@ public class HorizontalViewCardPanel extends ViewCardPanel {
         super.repaint();
         if(cb == null){ return; }
         int i = 0;
-        Point or = new Point(10,0);
+        Point or = new Point(300,25);
         for(Card c : cb.getCards()){
             ViewCard card = new ViewCard(c,or,Direction.DOWN,super.getImage_dir());
             card.setNotMove(true);

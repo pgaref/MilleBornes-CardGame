@@ -10,7 +10,7 @@ import game.Cards.Card;
 import game.Cards.Distance;
 import game.Cards.Type.CardType;
 import game.Player.Player;
-///import game.view.frame.MainGameFrame;
+import game.view.frame.MainGameFrame;
 import java.util.ArrayList;
 
 /**

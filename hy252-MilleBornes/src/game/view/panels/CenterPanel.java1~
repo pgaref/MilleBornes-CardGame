@@ -4,8 +4,7 @@
  */
 package game.view.panels;
 
-import game.CardCollection.CardPile; 
-import javax.swing.JPanel;
+import game.CardCollection.CardPile;
 import game.CardCollection.NotSupportedOperationException;
 import game.Cards.EmptyCard;
 import game.Player.Player;

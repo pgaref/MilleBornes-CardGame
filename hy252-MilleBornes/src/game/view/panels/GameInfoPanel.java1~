@@ -4,11 +4,7 @@
  */
 package game.view.panels;
 
-import game.Cards.Card; 
-import java.awt.event.ActionEvent; 
-import javax.swing.JButton; 
-import javax.swing.JLabel; 
-import javax.swing.JPanel;
+import game.Cards.Card;
 import game.master.GameMaster;
 import java.util.ArrayList;
 import java.util.logging.Level;
