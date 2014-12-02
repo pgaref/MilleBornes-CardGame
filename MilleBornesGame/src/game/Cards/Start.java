@@ -1,0 +1,31 @@
+/**
+ * 
+ */
+package game.Cards;
+
+// TODO: Auto-generated Javadoc
+/**
+ * This abstract class represents a Start Card by encapsulating its attributes
+ * such as its credits .
+ *
+ * @author Author
+ */
+public class Start extends Remedy {
+
+	/**
+	 * Instantiates a new start.
+	 */
+	public Start() {
+		// TODO Auto-generated constructor stub
+	}
+
+	/* (non-Javadoc)
+	 * @see game.Cards.Card#match(game.Cards.Card)
+	 */
+	@Override
+	public boolean match(Card other) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+}
