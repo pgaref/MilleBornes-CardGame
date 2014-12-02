@@ -1,0 +1,7 @@
+game.CardCollection
+game.Cards
+game.Cards.Type
+game.Player
+game.master
+game.view.client
+game.view.frame
