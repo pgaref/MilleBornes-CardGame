@@ -5,15 +5,16 @@
  */
 package game.Player;
 
-import game.CardCollection.BattlePile;
 import game.CardCollection.AbstractPile;
+import game.CardCollection.BattlePile;
 import game.CardCollection.DistancePile;
 import game.CardCollection.SafetyPile;
 import game.CardCollection.SpeedPile;
 import game.Cards.Card;
 import game.Cards.Distance;
 
-// TODO: Auto-generated Javadoc
+import java.util.ArrayList;
+
 /**
  * This class represents one Player of the Card game.
  * Contaids information such as players name, the 4 different piles and the temporary card!
@@ -29,18 +30,10 @@ public class Player {
     private int MilesRun;
     
     /** The hand. */
-    private AbstractPile hand;
-    
-    /** Players Piles!. */
+    private ArrayList<Card> hand;
     private AbstractPile battle;
-    
-    /** The speed. */
     private AbstractPile speed;
-    
-    /** The distance. */
     private AbstractPile distance;
-    
-    /** The satefy. */
     private AbstractPile satefy;
     
     /** The tmp. */
@@ -61,7 +54,8 @@ public class Player {
         this.name = name;
         this.MilesRun = 0; 
         this.hasStarted=false;
-        this.hand = new DistancePile();
+        
+        this.hand = new ArrayList<Card>();
         
         this.speed = new SpeedPile();
         this.distance = new DistancePile();
@@ -69,7 +63,6 @@ public class Player {
         this.satefy = new SafetyPile();
         this.tmp = null;
         
-        this.hand.getCards().add(new Distance(75));
     }
 	
 	/**
@@ -86,7 +79,7 @@ public class Player {
      *
      * @return the players hand
      */
-    public AbstractPile getPlayersHand() {
+    public ArrayList<Card> getPlayersHand() {
         return this.getHand();
     }
     
@@ -96,7 +89,7 @@ public class Player {
      * @param c the c
      */
     public void addHandCard(Card c){
-        this.getHand().getCards().add(c);
+        this.getHand().add(c);
     }
     
     /**
@@ -167,7 +160,7 @@ public class Player {
      *
      * @return the hand
      */
-    public AbstractPile getHand() {
+    public ArrayList<Card> getHand() {
         return hand;
     }
 
@@ -176,7 +169,7 @@ public class Player {
      *
      * @param hand the hand to set
      */
-    public void setHand(AbstractPile hand) {
+    public void setHand(ArrayList<Card> hand) {
         this.hand = hand;
     }
 
@@ -304,6 +297,34 @@ public class Player {
 	 */
 	public void setTmp(Card tmp) {
 		this.tmp = tmp;
+	}
+	
+	
+	public String toString(){
+		StringBuffer tmp  = new StringBuffer();
+		tmp.append(" Hand: ");
+		for(Card c: this.getHand() )
+			tmp.append(c+"\n");
+		
+		tmp.append( "\n Tmp: "+ this.getTmp() + "\n");
+		
+		tmp.append( "\n Safety: ");
+		for(Card c: this.getSatefy().cards )
+			tmp.append( c+"\n" );
+
+		tmp.append( "\n Distance: ");
+		for(Card c: this.getDistance().cards )
+			tmp.append( c+"\n") ;
+		
+		tmp.append("\n Battle: ");
+		for(Card c: this.getBattle().cards )
+			tmp.append( c+"\n" );
+		
+		tmp.append( "\n Speed: ");
+		for(Card c: this.getSpeed().cards )
+			tmp.append( c+"\n") ;
+		
+		return tmp.toString();
 	}
     
     

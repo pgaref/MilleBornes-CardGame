@@ -16,7 +16,7 @@ public class Gas extends Remedy {
 	 * Instantiates a new gas.
 	 */
 	public Gas() {
-		// TODO Auto-generated constructor stub
+		this.setImagePath("/game/images/"+"GASOLINE.jpg");
 	}
 
 	/* (non-Javadoc)

@@ -72,6 +72,7 @@ public class GameMaster implements Game{
     public GameMaster(String one, String two) {
     	
         this.deck = new Deck(one, two);
+        System.out.println("~~ Init GameMaster: \n"+ deck.toString());
         
         this.state = GameState.WAITFORNAMES;
         
@@ -189,23 +190,6 @@ public class GameMaster implements Game{
         return currPlayer;
     }
     
-
-    /**
-     * Initialiaze players with six cards.
-     */
-    public void initialiazePlayersWithSixCards() {
-       for(int i = 0 ; i < 6; i++){
-                Card tmp = new Distance(75);
-                deck.getP1().addHandCard(tmp);
-       }
-       
-       for(int i = 0 ; i < 6; i++){
-                Card tmp = new Distance(75);
-                deck.getP2().addHandCard(tmp);
-       }
-        
-    }
-
 
 	/**
 	 * Gets the curr player.

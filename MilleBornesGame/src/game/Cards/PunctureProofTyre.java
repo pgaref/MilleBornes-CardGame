@@ -17,7 +17,7 @@ public class PunctureProofTyre extends Safety{
      * Instantiates a new puncture proof tyre.
      */
     public PunctureProofTyre(){
-        
+    	this.setImagePath("/game/images/"+"PUNCTURE_PROOF.jpg");
     }
     
     /* (non-Javadoc)

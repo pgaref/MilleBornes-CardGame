@@ -9,9 +9,26 @@ import game.CardCollection.AbstractPile;
 import game.CardCollection.DiscardPile;
 import game.CardCollection.DrawPile;
 import game.CardCollection.NotSupportedOperationException;
+import game.Cards.Accident;
 import game.Cards.Card;
 import game.Cards.Distance;
+import game.Cards.DrivingAce;
+import game.Cards.ExtraTank;
+import game.Cards.Gas;
+import game.Cards.OutOfGas;
+import game.Cards.EndOfSpeedLimit;
+import game.Cards.Priority;
+import game.Cards.PunctureProofTyre;
+import game.Cards.Repair;
+import game.Cards.SpareTyre;
+import game.Cards.SpeedLimit;
+import game.Cards.Start;
+import game.Cards.Stop;
+import game.Cards.FlatTire;
 import game.Player.Player;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -44,17 +61,61 @@ public class Deck {
         p1 = new Player(name1);
         p2 = new Player(name2);
         
-        for(int i = 0 ; i < 50; i++){
-                Card tmp = new Distance(75);
-                try{
-                    this.drawCards.addCard(tmp);
-                    
-                }catch(NotSupportedOperationException ex){
-                    
-                    ex.printStackTrace();
-                }
+        ArrayList<Card> allCards = initAllCards();
+        for(int i = 0 ; i < 6; i++){
+        	p1.getHand().add(allCards.remove(allCards.size()-1));
+        	p2.getHand().add(allCards.remove(allCards.size()-1));
         }
         
+        this.drawCards.setCards(allCards);
+        
+    }
+    
+    public ArrayList<Card> initAllCards(){
+    	ArrayList<Card> all = new ArrayList<Card>();
+    	
+    	for(int i = 0 ; i < 106 ; i ++){
+    		if(i < 10)
+    			all.add( new Distance(25));
+    		else if(i < 20)
+    			all.add( new Distance(50));
+    		else if(i < 30 )
+    			all.add( new Distance(75));
+    		else if( i < 42)
+    			all.add( new Distance(100));
+    		else if( i < 46)
+    			all.add( new Distance(200));
+    		else if( i < 47)
+    			all.add( new DrivingAce());
+    		else if( i < 48)
+    			all.add( new ExtraTank());
+    		else if( i < 49)
+    			all.add( new PunctureProofTyre());
+    		else if( i < 50)
+    			all.add( new Priority());
+    		else if( i < 53)
+    			all.add(new Accident());
+    		else if( i < 56)
+    			all.add(new OutOfGas());
+    		else if ( i < 59)
+    			all.add(new FlatTire());
+    		else if( i < 64)
+    			all.add(new Stop());
+    		else if ( i < 68)
+    			all.add(new SpeedLimit());
+    		else if ( i < 74)
+    			all.add(new Repair());
+    		else if( i < 80)
+    			all.add( new Gas());
+    		else if ( i < 86)
+    			all.add(new SpareTyre());
+    		else if( i < 100)
+    			all.add(new Start());
+    		else
+    			all.add(new EndOfSpeedLimit());
+    	}
+    	Collections.shuffle(all);
+    	return all;
     }
     
     /**
@@ -145,6 +206,25 @@ public class Deck {
 		this.p2 = p2;
 	}
     
+	public String toString(){
+		
+		StringBuffer tmp = new StringBuffer();
+		
+		tmp.append("------ Draw Deck-------\n");
+		tmp.append(this.drawCards.cards.size() + "\n");
+		
+		tmp.append("------ Discard Deck-------\n");
+			tmp.append(this.discardCards.cards.size() + "\n");
+		
+		tmp.append( "------ P1 --------\n");
+		tmp.append( this.p1.toString() );
+		
+		tmp.append( "------ P2 --------\n");
+		tmp.append( this.p2.toString() );
+	
+		return tmp.toString();
+
+	}
     
     
 }

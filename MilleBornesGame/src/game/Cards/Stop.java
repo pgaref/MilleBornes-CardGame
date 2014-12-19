@@ -16,7 +16,7 @@ public class Stop extends Hazard {
 	 * Instantiates a new stop.
 	 */
 	public Stop() {
-		// TODO Auto-generated constructor stub
+		this.setImagePath("/game/images/"+"STOP.jpg");
 	}
 
 	/* (non-Javadoc)

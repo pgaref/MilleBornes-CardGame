@@ -17,7 +17,7 @@ public class OutOfGas extends Hazard{
      * Instantiates a new out of gas.
      */
     public OutOfGas(){
-        
+    	this.setImagePath("/game/images/"+"OUT_OF_GAS.jpg");
     }
     
      /* (non-Javadoc)

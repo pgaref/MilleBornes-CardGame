@@ -16,7 +16,7 @@ public class Repair extends Remedy {
 	 * Instantiates a new repair.
 	 */
 	public Repair() {
-		// TODO Auto-generated constructor stub
+		this.setImagePath("/game/images/"+"REPAIR.jpg");
 	}
 
 	/* (non-Javadoc)

@@ -17,7 +17,7 @@ public class Priority extends Safety{
      * Instantiates a new priority.
      */
     public Priority(){
-        
+    	this.setImagePath("/game/images/"+"RIGHT_OF_WAY.jpg");
     }
     
     /* (non-Javadoc)

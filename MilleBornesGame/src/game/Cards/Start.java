@@ -16,7 +16,7 @@ public class Start extends Remedy {
 	 * Instantiates a new start.
 	 */
 	public Start() {
-		// TODO Auto-generated constructor stub
+		this.setImagePath("/game/images/"+"ROLL.jpg");
 	}
 
 	/* (non-Javadoc)

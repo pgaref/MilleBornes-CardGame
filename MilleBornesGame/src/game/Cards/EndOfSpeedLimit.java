@@ -5,18 +5,18 @@ package game.Cards;
 
 // TODO: Auto-generated Javadoc
 /**
- * This abstract class represents a OutOfSpeedLimit Card by encapsulating its attributes
+ * This abstract class represents a EndOfSpeedLimit Card by encapsulating its attributes
  * such as its credits .
  *
  * @author Author
  */
-public class OutOfSpeedLimit extends Remedy {
+public class EndOfSpeedLimit extends Remedy {
 
 	/**
 	 * Instantiates a new out of speed limit.
 	 */
-	public OutOfSpeedLimit() {
-		// TODO Auto-generated constructor stub
+	public EndOfSpeedLimit() {
+		this.setImagePath("/game/images/"+"END_OF_LIMIT.jpg");
 	}
 
 	/* (non-Javadoc)

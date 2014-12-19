@@ -71,9 +71,9 @@ public class PlayersPanel extends JPanel {
             this.remove(down);
             this.remove(down2);
         }
-        this.down = new HorizontalViewCardPanel(game.getFirstPlayer(), false);
+        this.down = new HorizontalViewCardPanel(game.getFirstPlayer(), false, true);
         this.down2 = new HorizontalViewCardPanel(game.getFirstPlayer(), false);
-        this.up = new HorizontalViewCardPanel(game.getSecondPlayer(), true);
+        this.up = new HorizontalViewCardPanel(game.getSecondPlayer(), true, true);
         this.up2 = new HorizontalViewCardPanel(game.getSecondPlayer(), true);
         
  
@@ -145,8 +145,13 @@ public class PlayersPanel extends JPanel {
      *
      * @return the selected cards
      */
-    public ArrayList<Card> getSelectedCards(){
-        return activepanel != null ? activepanel.getSelectedCards() : null;
+    public Card getSelectedCard(){
+    	if(activepanel != null && activepanel.getSelectedCards().size()==1)
+    		return activepanel.getSelectedCards().get(0);
+    	else
+    		System.out.println("Just Select one Card!!!");
+    	return null;
+  
     }
     
 

@@ -16,7 +16,7 @@ public class SpeedLimit extends Hazard {
 	 * Instantiates a new speed limit.
 	 */
 	public SpeedLimit() {
-		// TODO Auto-generated constructor stub
+		this.setImagePath("/game/images/"+"SPEED_LIMIT.jpg");
 	}
 
 	/* (non-Javadoc)

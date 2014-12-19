@@ -36,12 +36,12 @@ public class MainGameFrame extends javax.swing.JFrame implements IGameClient{
      */
     public MainGameFrame() {
         super("MilleBornes Game");
-        InitPlayers players = new InitPlayers(null,true);
-        Object [] playerNames =  players.getPlayers().toArray();
-        this.game = new GameMaster(String.valueOf(playerNames[0]), String.valueOf(playerNames[1]));
+   //     InitPlayers players = new InitPlayers(null,true);
+   //     Object [] playerNames =  players.getPlayers().toArray();
+   //     this.game = new GameMaster(String.valueOf(playerNames[0]), String.valueOf(playerNames[1]));
         
-   //     this.game = new GameMaster("a", "b");
-        this.game.initialiazePlayersWithSixCards();
+        this.game = new GameMaster("a", "b");
+        
         this.playersSpace = new PlayersPanel(game);
         this.gameinfo = new GameInfoPanel(game,playersSpace);
         this.playersSpace.setOpaque(true); 

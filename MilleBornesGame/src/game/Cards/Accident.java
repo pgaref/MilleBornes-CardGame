@@ -17,7 +17,7 @@ public class Accident extends Hazard{
      * Instantiates a new accident.
      */
     public Accident(){
-        
+    	this.setImagePath("/game/images/"+"ACCIDENT.jpg");
     }
     
     /* (non-Javadoc)

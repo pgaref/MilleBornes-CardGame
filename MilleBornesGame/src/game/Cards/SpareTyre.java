@@ -16,7 +16,7 @@ public class SpareTyre extends Remedy {
 	 * Instantiates a new spare tyre.
 	 */
 	public SpareTyre() {
-		// TODO Auto-generated constructor stub
+		this.setImagePath("/game/images/"+"SPARE_TIRE.jpg");
 	}
 
 	/* (non-Javadoc)

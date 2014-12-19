@@ -16,7 +16,7 @@ public class DrivingAce extends Safety {
 	 * Instantiates a new driving ace.
 	 */
 	public DrivingAce() {
-		// TODO Auto-generated constructor stub
+		this.setImagePath("/game/images/"+"DRIVING_ACE.jpg");
 	}
 
 	/* (non-Javadoc)

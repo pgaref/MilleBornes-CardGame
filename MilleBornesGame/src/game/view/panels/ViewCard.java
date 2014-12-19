@@ -5,12 +5,14 @@
 package game.view.panels;
 
 import game.Cards.Card;
+
 import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
+
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
@@ -130,6 +132,10 @@ public class ViewCard extends JLabel implements MouseListener{
      */
     @Override
     public void mousePressed(MouseEvent e) {
+    	//System.out.println("PARENT "+ this.direction);
+    	if(( this.direction == Direction.UP ) )
+    		return;
+    	
         if(this.isNotMove()){
             if(this.parent != null){
                 this.parent.resetAllCards();

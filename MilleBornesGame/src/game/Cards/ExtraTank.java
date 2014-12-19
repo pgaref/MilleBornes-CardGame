@@ -7,18 +7,18 @@ package game.Cards;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class FuelTank.
+ * The Class ExtraTank.
  *
  * @author Author
  */
-public class FuelTank extends Safety{
+public class ExtraTank extends Safety{
 	
 	
 	/**
 	 * Instantiates a new fuel tank.
 	 */
-	public FuelTank(){
-		
+	public ExtraTank(){
+		this.setImagePath("/game/images/"+"EXTRA_TANK.jpg");
 	}
     
     /* (non-Javadoc)

@@ -267,7 +267,7 @@ public class GameInfoPanel extends javax.swing.JPanel {
      */
     private void throwCardsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_throwCardsActionPerformed
         // TODO add your handling code here:
-        ArrayList <Card> cards = getPlayers().getSelectedCards();
+        Card card = getPlayers().getSelectedCard();
 
         
     }//GEN-LAST:event_throwCardsActionPerformed
