@@ -14,6 +14,8 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Point;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -193,6 +195,93 @@ public class HorizontalViewCardPanel extends ViewCardPanel {
         }
     }
     
+    /**
+     * Hide Extra cards!
+     */
+    public void HideCards(boolean b){
+        this.removeAll();
+        super.revalidate();
+        super.repaint();
+        this.origin = null;
+        int i = 1;
+        if(origin == null){ origin = new Point(110, 0);}
+        if(super.isIsMirror()) {
+            origin.y = 5;
+            name.setForeground(Color.red);
+            name.setBounds(origin.x - 100 , origin.y + 10, 200, 20);
+            super.add(name,new Integer(i++));
+        }
+        else {
+            origin.y = 20;
+            name.setForeground(Color.red);
+            name.setBounds(origin.x - 100, origin.y + 100, 200, 20);
+            try{
+                super.add(name,new Integer(i++)); 
+            }
+            catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+        
+        int count = 0;
+        for(Card c : super.getPlayer().getSatefy().getCards()){
+        	System.out.println("Adding Player: "+super.getPlayer().getName()+ " Extra Card: "+ c);
+            ViewCard card = new ViewCard(c,origin,super.isIsMirror() ? Direction.UP : Direction.DOWN,super.getImage_dir());
+            super.add(card,new Integer(i++));
+            origin.x += 100;
+            count ++;
+        }
+        while (count <= 3){
+        	System.out.println("Adding Player: "+super.getPlayer().getName()+ " Extra Card: Empty");
+        	ViewCard card = new ViewCard(new EmptyCard(),origin,super.isIsMirror() ? Direction.UP : Direction.DOWN,super.getImage_dir());
+            super.add(card,new Integer(i++));
+            origin.x += 100;
+            count ++;
+        }
+        count = 0;
+        for(Card c : super.getPlayer().getDistance().getCards()){
+        		System.out.println("Adding Player: "+super.getPlayer().getName()+ " Extra Card: "+ c);
+                ViewCard card = new ViewCard(c,origin,super.isIsMirror() ? Direction.UP : Direction.DOWN,super.getImage_dir());
+                super.add(card,new Integer(i++));
+                origin.x += 100;
+                count ++;
+         }
+        if (count < 1){
+        	System.out.println("Adding Player: "+super.getPlayer().getName()+ " Extra Card: Empty");
+        	ViewCard card = new ViewCard(new EmptyCard(),origin,super.isIsMirror() ? Direction.UP : Direction.DOWN,super.getImage_dir());
+            super.add(card,new Integer(i++));
+            origin.x += 100;
+        }
+        count = 0;
+        for(Card c : super.getPlayer().getBattle().getCards()){
+            	System.out.println("Adding Player: "+super.getPlayer().getName()+ " Extra Card: "+ c);
+                ViewCard card = new ViewCard(c,origin,super.isIsMirror() ? Direction.UP : Direction.DOWN,super.getImage_dir());
+                super.add(card,new Integer(i++));
+                origin.x += 100;
+                count ++;
+         }
+        if (count < 1){
+        	System.out.println("Adding Player: "+super.getPlayer().getName()+ " Extra Card: Empty");
+        	ViewCard card = new ViewCard(new EmptyCard(),origin,super.isIsMirror() ? Direction.UP : Direction.DOWN,super.getImage_dir());
+            super.add(card,new Integer(i++));
+            origin.x += 100;
+        }
+        count = 0;
+        for(Card c : super.getPlayer().getSpeed().getCards()){
+            	System.out.println("Adding Player: "+super.getPlayer().getName()+ " Extra Card: "+ c);
+                ViewCard card = new ViewCard(c,origin,super.isIsMirror() ? Direction.UP : Direction.DOWN,super.getImage_dir());
+                super.add(card,new Integer(i++));
+                origin.x += 100;
+                count ++;
+         }
+        if (count < 1){
+        	System.out.println("Adding Player: "+super.getPlayer().getName()+ " Extra Card: Empty");
+        	ViewCard card = new ViewCard(new EmptyCard(),origin,super.isIsMirror() ? Direction.UP : Direction.DOWN,super.getImage_dir());
+            super.add(card,new Integer(i++));
+            origin.x += 100;
+        }
+    }
+    
     /* (non-Javadoc)
      * @see game.view.panels.ViewCardPanel#changePlayer(game.Player.Player)
      */
@@ -241,7 +330,38 @@ public class HorizontalViewCardPanel extends ViewCardPanel {
             origin.x += 100;
         }
     }
-    
+	public void RepaintCards() {
+		super.removeAll();
+		super.revalidate();
+		super.repaint();
+
+		int i = 1;
+		origin = new Point(110, 0);
+		
+		if(super.isIsMirror()) {
+            origin.y = 5;
+            name.setForeground(Color.red);
+            name.setBounds(origin.x - 100 , origin.y + 10, 200, 20);
+            super.add(name,new Integer(i++));
+        }
+        else {
+            origin.y = 20;
+            name.setForeground(Color.red);
+            name.setBounds(origin.x - 100, origin.y + 100, 200, 20);
+            try{
+                super.add(name,new Integer(i++)); 
+            }
+            catch(Exception ex){
+                System.out.println(ex.getMessage());
+            }
+        }
+        for(Card c : super.getPlayer().getPlayersHand()){
+        	System.out.println("Adding Player: "+super.getPlayer().getName()+ " Card: "+ c);
+            ViewCard card = new ViewCard(c,origin,super.isIsMirror() ? Direction.UP : Direction.DOWN,super.getImage_dir());
+            super.add(card,new Integer(i++));
+            origin.x += 100;
+        }
+	}
     /**
      * Adds the cards.
      */
@@ -335,21 +455,30 @@ public class HorizontalViewCardPanel extends ViewCardPanel {
      *
      * @param cb the new cards
      */
-    public void setCards(AbstractPile cb) {
-        System.out.println("called : ");
-        super.removeAll();
-        super.revalidate();
-        super.repaint();
-        if(cb == null){ return; }
-        int i = 0;
-        Point or = new Point(300,25);
-        for(Card c : cb.getCards()){
-            ViewCard card = new ViewCard(c,or,Direction.DOWN,super.getImage_dir());
-            card.setNotMove(true);
-            System.out.println(card.getCard().toString());
-            super.add(card,new Integer(i++));
-            or.x += 25;
-        }
-        System.out.println("------------------------");
-    }
+	public void setCard(Card cb) {
+		super.removeAll();
+		super.revalidate();
+		super.repaint();
+		if (cb == null) {
+			return;
+		}
+		int i = 0;
+		Point or = new Point(300, 25);
+		ViewCard card = new ViewCard(new EmptyCard(), or, Direction.DOWN,
+				super.getImage_dir());
+//		card.addMouseListener(new MouseAdapter() {
+//			@Override
+//			public void mouseClicked(MouseEvent e) {
+//				System.out.println("Draw Card Clicked!");
+//				 CenterPanel.this.e;
+//
+//			}
+//		});
+		card.setNotMove(true);
+		super.add(card, new Integer(i++));
+		or.x += 25;
+
+	}
+
+
 }

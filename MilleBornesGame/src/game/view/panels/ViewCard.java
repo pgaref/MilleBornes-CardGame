@@ -132,9 +132,7 @@ public class ViewCard extends JLabel implements MouseListener{
      */
     @Override
     public void mousePressed(MouseEvent e) {
-    	//System.out.println("PARENT "+ this.direction);
-    	if(( this.direction == Direction.UP ) )
-    		return;
+    	//System.out.println("Card Direction "+ this.direction);
     	
         if(this.isNotMove()){
             if(this.parent != null){

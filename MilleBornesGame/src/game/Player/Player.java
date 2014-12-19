@@ -45,6 +45,9 @@ public class Player {
     /** The state. */
     private boolean state;
     
+    /** The player has drawn a card in this round! */
+    private boolean hasDrawn;
+    
     /**
      * Player Class constructor.
      *
@@ -54,6 +57,7 @@ public class Player {
         this.name = name;
         this.MilesRun = 0; 
         this.hasStarted=false;
+        this.hasDrawn = false;
         
         this.hand = new ArrayList<Card>();
         
@@ -118,6 +122,14 @@ public class Player {
             return false;
         return true;        
     }
+    
+    public boolean canDiscardCard(){	
+    	if(this.hasDrawn)
+    		return true;
+    	else 
+    		return false;
+    }
+    
     
     /**
      * Observer method.
@@ -250,7 +262,7 @@ public class Player {
      *
      * @return the hasStarted
      */
-    public boolean isHasStarted() {
+    public boolean hasStarted() {
         return hasStarted;
     }
 
@@ -299,6 +311,15 @@ public class Player {
 		this.tmp = tmp;
 	}
 	
+
+
+	public boolean hasDrawnCard() {
+		return hasDrawn;
+	}
+	
+	public void changeDrawnCard(boolean b) {
+		this.hasDrawn = b;
+	}
 	
 	public String toString(){
 		StringBuffer tmp  = new StringBuffer();
@@ -326,6 +347,7 @@ public class Player {
 		
 		return tmp.toString();
 	}
+	
     
     
     

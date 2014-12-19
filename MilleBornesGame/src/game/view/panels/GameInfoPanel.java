@@ -238,7 +238,7 @@ public class GameInfoPanel extends javax.swing.JPanel {
                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
-    }// </editor-fold>//GEN-END:initComponents
+    }
 
     /**
      * Play button action performed.
@@ -255,26 +255,29 @@ public class GameInfoPanel extends javax.swing.JPanel {
      *
      * @param evt the evt
      */
-    private void passButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passButtonActionPerformed
-        // TODO add your handling code here:
+    private void passButtonActionPerformed(java.awt.event.ActionEvent evt) {	
     	
-    	if( game.playerSelectsToPass()) 
-    		getPlayers().findCurrentPlayer();
-        
-    }//GEN-LAST:event_passButtonActionPerformed
+    	if( game.playerSelectsToPass()) {
+    		System.out.println("Player can pass");
+    		getPlayers().changePlayerTurn();;
+    	}
+    	else
+    		System.out.println("Player can NOT pass");
+    }
 
     /**
      * Throw cards action performed.
      *
      * @param evt the evt
      */
-    private void throwCardsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_throwCardsActionPerformed
-        // TODO add your handling code here:
-        Card card = getPlayers().getSelectedCard();
-
-        
-    }//GEN-LAST:event_throwCardsActionPerformed
-
+    private void throwCardsActionPerformed(java.awt.event.ActionEvent evt) {
+       
+    	Card card = getPlayers().getSelectedCard();
+        System.out.println("Got card: "+ card);   
+        game.playerDiscardsCard(card);
+        getPlayers().changePlayerTurn();
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     /** The j label1. */
     private javax.swing.JLabel jLabel1;

@@ -105,7 +105,6 @@ public class GameMaster implements Game{
      */
     public boolean playerSelectsToPass()
     {
-    	
     	if(this.currPlayer.getHand().size()>6){
     		return false;
     	}
@@ -119,6 +118,22 @@ public class GameMaster implements Game{
     	return true;
     }
     
+
+	public boolean playerDiscardsCard(Card card) {
+		if(this.currPlayer.canDiscardCard() && this.currPlayer.getHand().size()>1){
+			this.currPlayer.getHand().remove(card);	
+			this.deck.getDiscardCards().cards.add(card);
+			
+			if(this.currPlayer .getName().compareTo( deck.getP1().getName()) ==0)
+    			this.currPlayer=deck.getP2();
+    		else
+    			this.currPlayer = deck.getP1();
+    		System.out.println("Changing player to: "+ this.currPlayer.getName());
+			return true;
+		}
+		return false;
+	}
+    
     /**
      * The method that implements the basic game logic.
      *
@@ -127,9 +142,26 @@ public class GameMaster implements Game{
      * @param c The card
      * @return true if card was valid, otherwise false
      */
-    public boolean playerSubmitsCard(Player p, Card c)
+    public boolean playerSubmitsCard(Card c)
     {
         return false;
+	}
+
+	/**
+	 * The method that implements the basic draw Card logic.
+	 *
+	 * In this method
+	 * 
+	 * @return true if card was drawn, otherwise false
+	 */
+    public boolean playerDrawCard(){
+    	if(!this.currPlayer.hasDrawnCard()){
+    		Card tmp = this.deck.getDrawCards().getCards().remove(this.deck.getDrawCards().getCards().size()-1);
+    		this.currPlayer.getHand().add(tmp);
+    		this.currPlayer.changeDrawnCard(true);
+    		return true;
+    	}
+    	return false;
     }
 
     
@@ -300,5 +332,6 @@ public class GameMaster implements Game{
 	public void setDeck(Deck deck) {
 		this.deck = deck;
 	}
+
     
 }

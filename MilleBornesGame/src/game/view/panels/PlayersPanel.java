@@ -64,7 +64,7 @@ public class PlayersPanel extends JPanel {
     /**
      * Adds the panels.
      */
-    private void addPanels(){
+    public void addPanels(){
         if(up != null && down != null ){
             this.remove(up);
             this.remove(up2);
@@ -76,7 +76,8 @@ public class PlayersPanel extends JPanel {
         this.up = new HorizontalViewCardPanel(game.getSecondPlayer(), true);
         this.up2 = new HorizontalViewCardPanel(game.getSecondPlayer(), true, true);
         
- 
+        //Player 1 Starts!!!
+        activepanel = down2;
         
         JPanel doublePanel1 = new JPanel();
         doublePanel1.setLayout( new BorderLayout());
@@ -108,17 +109,18 @@ public class PlayersPanel extends JPanel {
     }
     
     /**
-     * Find current player.
+     *  current player Pass
      */
-    public void findCurrentPlayer(){
+    public void changePlayerTurn(){
         Player current = game.getCurrentPlayer();
+        current.changeDrawnCard(false);
         
         if(up.getPlayer().getName().equals(current.getName())){
             activepanel = up;
             up.changeCurrentPlayerColor();
             up2.changeCurrentPlayerColor();
             
-            down.HideCards();
+            down.HideCards(true);
             down2.HideCards();
 
         }
@@ -129,10 +131,25 @@ public class PlayersPanel extends JPanel {
             down2.changeCurrentPlayerColor();
             
             up.HideCards();
-            up2.HideCards();
+            up2.HideCards(true);
         }
         
         activepanel.changePlayer(current);
+    }
+    
+    
+    /**
+     *  current player Draw Card
+     */
+    public void currPlayerDraw(){
+    	
+        Player current = game.getCurrentPlayer();
+        
+        if(up.getPlayer().getName().equals(current.getName()))
+            up.RepaintCards();
+        
+        else if(down.getPlayer().getName().equals(current.getName()))
+            down2.RepaintCards();
     }
     
     /* (non-Javadoc)
@@ -165,7 +182,7 @@ public class PlayersPanel extends JPanel {
      *
      * @param comb the new cards
      */
-    public void setCards(AbstractPile comb) {
-        center.setCards(comb);
+    public void setCards(Card comb) {
+        center.setCard(comb);
     }
 }
