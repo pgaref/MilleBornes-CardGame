@@ -25,6 +25,8 @@ public class Priority extends Safety{
      */
     @Override
     public boolean match(Card other) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	if( (other instanceof Stop) || (other instanceof SpeedLimit) )
+     		return true;
+     	return false;
     }
 }

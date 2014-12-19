@@ -25,7 +25,10 @@ public class Accident extends Hazard{
      */
     @Override
     public boolean match(Card other) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	
+    	if((other instanceof Repair) || ( other instanceof DrivingAce))
+    		return true;
+    	return false;
     }
     
 }

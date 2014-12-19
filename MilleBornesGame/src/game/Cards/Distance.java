@@ -30,7 +30,9 @@ public class Distance extends Card{
      */
     @Override
     public boolean match(Card other) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	if( (other instanceof SpeedLimit)  && ( this.getValue() > 50))
+     		return true;
+     	return false;
     }
     
 }

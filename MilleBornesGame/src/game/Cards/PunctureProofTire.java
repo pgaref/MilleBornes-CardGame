@@ -7,16 +7,16 @@ package game.Cards;
 
 // TODO: Auto-generated Javadoc
 /**
- * The Class PunctureProofTyre.
+ * The Class PunctureProofTire.
  *
  * @author Author
  */
-public class PunctureProofTyre extends Safety{
+public class PunctureProofTire extends Safety{
     
     /**
      * Instantiates a new puncture proof tyre.
      */
-    public PunctureProofTyre(){
+    public PunctureProofTire(){
     	this.setImagePath("/game/images/"+"PUNCTURE_PROOF.jpg");
     }
     
@@ -25,6 +25,8 @@ public class PunctureProofTyre extends Safety{
      */
     @Override
     public boolean match(Card other) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	if( (other instanceof FlatTire) )
+     		return true;
+     	return false;
     }
 }

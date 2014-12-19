@@ -6,7 +6,6 @@
 package game.CardCollection;
 
 import game.Cards.Card;
-import game.Cards.Type.CardType;
 
 import java.util.ArrayList;
 
@@ -25,7 +24,6 @@ public class DrawPile extends AbstractPile{
 	 */
     public DrawPile(){
         this.cards = new ArrayList<Card>();
-        this.type=CardType.DISCARD;
     }
     
     /**
@@ -36,7 +34,6 @@ public class DrawPile extends AbstractPile{
      */
     public DrawPile(ArrayList<Card> a){
         this.cards = new ArrayList<Card>();
-        this.type=CardType.DISCARD;
         this.cards.addAll(a);
     }
     

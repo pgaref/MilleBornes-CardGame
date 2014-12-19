@@ -7,7 +7,6 @@ package game.CardCollection;
 
 import game.Cards.Card;
 import game.Cards.Safety;
-import game.Cards.Type.CardType;
 
 import java.util.ArrayList;
 
@@ -27,7 +26,6 @@ public class SafetyPile extends AbstractPile{
 	
     public SafetyPile(){
         this.cards = new ArrayList<Card>();
-        this.type=CardType.SAFETY;
     }
     
     /**
@@ -38,7 +36,6 @@ public class SafetyPile extends AbstractPile{
      */
     public SafetyPile(ArrayList<Card> list){
         super();
-        this.type=CardType.SAFETY;
         this.cards.addAll(list);
     }
     

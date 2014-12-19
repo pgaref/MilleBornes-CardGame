@@ -5,7 +5,6 @@
  */
 package game.CardCollection;
 
-import game.Cards.Type.CardType;
 import game.Cards.Card;
 
 import java.util.ArrayList;
@@ -25,19 +24,8 @@ public abstract class AbstractPile
     /** The cards. */
     public ArrayList<Card> cards;
     
-    /** The type. */
-    public CardType type;
     
-    
-    /**
-     * The round type to be returned! (Accessor)
-     *  See CardType enumeration for further details.
-     *
-     * @return the round type
-     */
-    public CardType getType() {
-        return type;
-    }
+  
 
     /**
      * Returns the arraylist of the cards belonging to this card collection.

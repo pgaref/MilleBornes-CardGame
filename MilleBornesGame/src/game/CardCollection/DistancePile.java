@@ -7,7 +7,6 @@ package game.CardCollection;
 
 import game.Cards.Card;
 import game.Cards.Distance;
-import game.Cards.Type.CardType;
 
 import java.util.ArrayList;
 
@@ -27,7 +26,6 @@ public class DistancePile extends AbstractPile{
 	 */
     public DistancePile(){
     	this.cards = new ArrayList<Card>();
-        this.type=CardType.DISTANCE;
     }
     
     /**
@@ -37,7 +35,6 @@ public class DistancePile extends AbstractPile{
      * @param list the list
      */
     public DistancePile(ArrayList<Card> list){
-        this.type=CardType.DISTANCE;
         this.cards.addAll(list);
     }
     

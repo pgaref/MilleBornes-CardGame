@@ -24,8 +24,9 @@ public class Stop extends Hazard {
 	 */
 	@Override
 	public boolean match(Card other) {
-		// TODO Auto-generated method stub
-		return false;
+		if( (other instanceof Start) )
+     		return true;
+     	return false;
 	}
 
 }

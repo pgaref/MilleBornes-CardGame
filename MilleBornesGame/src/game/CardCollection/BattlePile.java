@@ -6,7 +6,6 @@
 package game.CardCollection;
 
 import game.Cards.Card;
-import game.Cards.Type.CardType;
 import java.util.ArrayList;
 
 // TODO: Auto-generated Javadoc
@@ -24,7 +23,6 @@ public class BattlePile extends AbstractPile{
 	 */
     public BattlePile(){
         this.cards = new ArrayList<Card>();
-        this.type =CardType.BATTLE;
     }
     
     /**
@@ -36,7 +34,6 @@ public class BattlePile extends AbstractPile{
     
     public BattlePile(ArrayList<Card> a){
         this.cards  = new ArrayList<Card>();
-        this.type =CardType.BATTLE;
         this.cards.addAll(a);
         
     }

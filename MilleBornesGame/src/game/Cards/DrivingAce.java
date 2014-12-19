@@ -24,8 +24,9 @@ public class DrivingAce extends Safety {
 	 */
 	@Override
 	public boolean match(Card other) {
-		// TODO Auto-generated method stub
-		return false;
+		if(other instanceof Accident)
+    		return true;
+    	return false;
 	}
 
 }

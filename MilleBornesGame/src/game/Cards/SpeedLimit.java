@@ -24,8 +24,9 @@ public class SpeedLimit extends Hazard {
 	 */
 	@Override
 	public boolean match(Card other) {
-		// TODO Auto-generated method stub
-		return false;
+		if( (other instanceof Distance) && (other.getValue() > 50) )
+     		return true;
+     	return false;
 	}
 
 }

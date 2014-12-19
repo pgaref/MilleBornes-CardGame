@@ -26,7 +26,10 @@ public class ExtraTank extends Safety{
      */
     @Override
     public boolean match(Card other) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	
+    	if( (other instanceof OutOfGas) )
+     		return true;
+     	return false;
     }
     
     

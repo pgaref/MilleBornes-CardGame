@@ -18,9 +18,9 @@ import game.Cards.Gas;
 import game.Cards.OutOfGas;
 import game.Cards.EndOfSpeedLimit;
 import game.Cards.Priority;
-import game.Cards.PunctureProofTyre;
+import game.Cards.PunctureProofTire;
 import game.Cards.Repair;
-import game.Cards.SpareTyre;
+import game.Cards.SpareTire;
 import game.Cards.SpeedLimit;
 import game.Cards.Start;
 import game.Cards.Stop;
@@ -66,6 +66,8 @@ public class Deck {
         	p1.getHand().add(allCards.remove(allCards.size()-1));
         	p2.getHand().add(allCards.remove(allCards.size()-1));
         }
+        p1.getSpeed().cards.add(new Distance(50));
+        
         
         this.drawCards.setCards(allCards);
         
@@ -90,7 +92,7 @@ public class Deck {
     		else if( i < 48)
     			all.add( new ExtraTank());
     		else if( i < 49)
-    			all.add( new PunctureProofTyre());
+    			all.add( new PunctureProofTire());
     		else if( i < 50)
     			all.add( new Priority());
     		else if( i < 53)
@@ -108,7 +110,7 @@ public class Deck {
     		else if( i < 80)
     			all.add( new Gas());
     		else if ( i < 86)
-    			all.add(new SpareTyre());
+    			all.add(new SpareTire());
     		else if( i < 100)
     			all.add(new Start());
     		else

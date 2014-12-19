@@ -5,17 +5,17 @@ package game.Cards;
 
 // TODO: Auto-generated Javadoc
 /**
- * This abstract class represents a SpareTyre Card by encapsulating its attributes
+ * This abstract class represents a SpareTire Card by encapsulating its attributes
  * such as its credits .
  *
  * @author Author
  */
-public class SpareTyre extends Remedy {
+public class SpareTire extends Remedy {
 
 	/**
 	 * Instantiates a new spare tyre.
 	 */
-	public SpareTyre() {
+	public SpareTire() {
 		this.setImagePath("/game/images/"+"SPARE_TIRE.jpg");
 	}
 
@@ -24,8 +24,9 @@ public class SpareTyre extends Remedy {
 	 */
 	@Override
 	public boolean match(Card other) {
-		// TODO Auto-generated method stub
-		return false;
+		if( (other instanceof FlatTire) )
+     		return true;
+     	return false;
 	}
 
 }

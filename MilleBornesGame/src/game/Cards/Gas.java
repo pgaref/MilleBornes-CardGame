@@ -24,8 +24,9 @@ public class Gas extends Remedy {
 	 */
 	@Override
 	public boolean match(Card other) {
-		// TODO Auto-generated method stub
-		return false;
+		if( (other instanceof OutOfGas) )
+     		return true;
+     	return false;
 	}
 
 }

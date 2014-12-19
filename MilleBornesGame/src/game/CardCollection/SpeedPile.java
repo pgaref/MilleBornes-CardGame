@@ -6,7 +6,6 @@
 package game.CardCollection;
 
 import game.Cards.Card;
-import game.Cards.Type.CardType;
 import java.util.ArrayList;
 
 // TODO: Auto-generated Javadoc
@@ -25,7 +24,6 @@ public class SpeedPile extends AbstractPile{
 	
     public SpeedPile(){
         this.cards = new ArrayList<Card>();
-        this.type=CardType.SPEED;
     }
     
     /**
@@ -36,7 +34,6 @@ public class SpeedPile extends AbstractPile{
      */
     public SpeedPile(ArrayList<Card> list){
         super();
-        this.type=CardType.SPEED;
         this.cards.addAll(list);
     }
     

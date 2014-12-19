@@ -25,6 +25,8 @@ public class OutOfGas extends Hazard{
       */
      @Override
     public boolean match(Card other) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    	 if((other instanceof ExtraTank) || ( other instanceof Gas))
+     		return true;
+     	return false;
     }
 }
