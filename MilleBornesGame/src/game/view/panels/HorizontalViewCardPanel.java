@@ -166,7 +166,7 @@ public class HorizontalViewCardPanel extends ViewCardPanel {
         super.repaint();
         this.origin = null;
         int i = 1;
-        if(origin == null){ origin = new Point(100, 0);}
+        if(origin == null){ origin = new Point(110, 0);}
         if(super.isIsMirror()) {
             origin.y = 5;
             name.setForeground(Color.red);
@@ -186,11 +186,10 @@ public class HorizontalViewCardPanel extends ViewCardPanel {
         }
         
         for(Card c : super.getPlayer().getPlayersHand()){
-            ViewCard card = new ViewCard(c,origin,super.isIsMirror() ? Direction.UP : Direction.DOWN,super.getImage_dir());
-            card.setCard_image(new ImageIcon(getClass().getResource("/images/back.jpg")));
-            card.setNotMove(true);
+        	System.out.println("Repainting Player: "+super.getPlayer().getName()+ " Card: "+ c);
+            ViewCard card = new ViewCard(new EmptyCard(),origin,super.isIsMirror() ? Direction.UP : Direction.DOWN,super.getImage_dir());
             super.add(card,new Integer(i++));
-            origin.x += 25;
+            origin.x += 100;
         }
     }
     
@@ -204,7 +203,7 @@ public class HorizontalViewCardPanel extends ViewCardPanel {
         super.revalidate();
         super.repaint();
         super.name.setText(p.getName());
-        origin = new Point(100, 0);
+        origin = new Point(110, 0);
         this.addCards();
     }
     
@@ -332,7 +331,7 @@ public class HorizontalViewCardPanel extends ViewCardPanel {
     }
 
     /**
-     * Sets the cards.
+     * Sets the cards. Only for the Central Panel
      *
      * @param cb the new cards
      */

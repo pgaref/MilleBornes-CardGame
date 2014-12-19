@@ -103,9 +103,20 @@ public class GameMaster implements Game{
      * @param p The player who said "pass"
      * @return true if succeeded
      */
-    public boolean playerSelectsToPass(Player p)
+    public boolean playerSelectsToPass()
     {
-        return false;
+    	
+    	if(this.currPlayer.getHand().size()>6){
+    		return false;
+    	}
+    	else{
+    		if(this.currPlayer .getName().compareTo( deck.getP1().getName()) ==0)
+    			this.currPlayer=deck.getP2();
+    		else
+    			this.currPlayer = deck.getP1();
+    		System.out.println("Changing player to: "+ this.currPlayer.getName());
+    	}
+    	return true;
     }
     
     /**

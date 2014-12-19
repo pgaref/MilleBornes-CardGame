@@ -152,7 +152,7 @@ public class GameInfoPanel extends javax.swing.JPanel {
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         playButton.setText("Play");
-        playButton.setEnabled(false);
+        //playButton.setEnabled(false);
         playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playButtonActionPerformed(evt);
@@ -160,7 +160,7 @@ public class GameInfoPanel extends javax.swing.JPanel {
         });
 
         passButton.setText("Pass");
-        passButton.setEnabled(false);
+        //passButton.setEnabled(false);
         passButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passButtonActionPerformed(evt);
@@ -257,6 +257,9 @@ public class GameInfoPanel extends javax.swing.JPanel {
      */
     private void passButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_passButtonActionPerformed
         // TODO add your handling code here:
+    	
+    	if( game.playerSelectsToPass()) 
+    		getPlayers().findCurrentPlayer();
         
     }//GEN-LAST:event_passButtonActionPerformed
 

@@ -73,8 +73,8 @@ public class PlayersPanel extends JPanel {
         }
         this.down = new HorizontalViewCardPanel(game.getFirstPlayer(), false, true);
         this.down2 = new HorizontalViewCardPanel(game.getFirstPlayer(), false);
-        this.up = new HorizontalViewCardPanel(game.getSecondPlayer(), true, true);
-        this.up2 = new HorizontalViewCardPanel(game.getSecondPlayer(), true);
+        this.up = new HorizontalViewCardPanel(game.getSecondPlayer(), true);
+        this.up2 = new HorizontalViewCardPanel(game.getSecondPlayer(), true, true);
         
  
         
@@ -116,15 +116,20 @@ public class PlayersPanel extends JPanel {
         if(up.getPlayer().getName().equals(current.getName())){
             activepanel = up;
             up.changeCurrentPlayerColor();
+            up2.changeCurrentPlayerColor();
+            
             down.HideCards();
             down2.HideCards();
 
         }
         else if(down.getPlayer().getName().equals(current.getName())){
-            activepanel = down;
+            activepanel = down2;
+            
             down.changeCurrentPlayerColor();;
             down2.changeCurrentPlayerColor();
+            
             up.HideCards();
+            up2.HideCards();
         }
         
         activepanel.changePlayer(current);
