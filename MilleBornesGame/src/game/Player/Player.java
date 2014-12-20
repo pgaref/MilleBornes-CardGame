@@ -36,14 +36,12 @@ public class Player {
     private AbstractPile distance;
     private AbstractPile satefy;
     
-    /** The tmp. */
-    private Card tmp;
     
     /** The has started. */
     private boolean hasStarted;
     
     /** The state. */
-    private boolean state;
+    private boolean canMove;
     
     /** The player has drawn a card in this round! */
     private boolean hasDrawn;
@@ -58,6 +56,7 @@ public class Player {
         this.MilesRun = 0; 
         this.hasStarted=false;
         this.hasDrawn = false;
+        this.canMove = true;
         
         this.hand = new ArrayList<Card>();
         
@@ -65,7 +64,6 @@ public class Player {
         this.distance = new DistancePile();
         this.battle = new BattlePile();
         this.satefy = new SafetyPile();
-        this.tmp = null;
         
     }
 	
@@ -116,11 +114,54 @@ public class Player {
      * @return true, if successful
      */
     public boolean canThrowMileCard(Card c){
-        if(!(c instanceof Distance))
-                return false;
-        if(getMilesRun() + c.getValue() > 1000)
-            return false;
+    	
+    	/**
+    	 * Player rules to throw Distance Card
+    	 */
+    	
+    	//Wrong Card case
+    	if(!(c instanceof Distance)){
+    		System.out.println("This is not a Distane Card!!!");
+    		return false;
+    	}
+    	
+    	//Not started case
+//    	if(this.hasStarted == false){
+//    		System.out.println("You need a Roll/Priority Card to start playing!");
+//    		return false;
+//    	}
+    	
+    	
+    	//More than 1k case
+    	if(getMilesRun() + c.getValue() > 1000){
+            System.out.println("The total Miles cannot be more than 1000!!!!");
+    		return false;
+    	}
+    	
+        //Up to 2  -> 200 miles Cards allowed!
+    	if( (c.getValue() == 200) && (this.topMileCounter() <2) )
+    			return true;
+    	else if((c.getValue() == 200) && (this.topMileCounter() >=2) ){
+    		System.out.println("Cannot throw more than 2, 200Mile Cards!!");
+    		return false;
+    	}
+    	
+        
+        
+        
         return true;        
+    }
+    /**
+     * Method to count 200 Mile Cards!
+     * @return
+     */
+    public int topMileCounter(){
+    	int count  = 0 ;
+    	for(Card  c : this.distance.getCards()){
+    		if(c.getValue() ==200)
+    			count++;
+    	}
+    	return count;
     }
     
     public boolean canDiscardCard(){	
@@ -163,8 +204,8 @@ public class Player {
      *
      * @param MilesRun the MilesRun to set
      */
-    public void setMilesRun(int MilesRun) {
-        this.MilesRun = MilesRun;
+    public void addMilesRun(int MilesRun) {
+        this.MilesRun += MilesRun;
     }
 
     /**
@@ -274,42 +315,15 @@ public class Player {
     public void setHasStarted(boolean hasStarted) {
         this.hasStarted = hasStarted;
     }
-
-    /**
-     * Checks if is state.
-     *
-     * @return the state
-     */
-    public boolean isState() {
-        return state;
-    }
-
-    /**
-     * Sets the state.
-     *
-     * @param state the state to set
-     */
-    public void setState(boolean state) {
-        this.state = state;
-    }
 	
-	/**
-	 * Gets the tmp.
-	 *
-	 * @return the tmp
-	 */
-	public Card getTmp() {
-		return tmp;
-	}
-	
-	/**
-	 * Sets the tmp.
-	 *
-	 * @param tmp the tmp to set
-	 */
-	public void setTmp(Card tmp) {
-		this.tmp = tmp;
-	}
+
+    public boolean canMove(){
+    	return this.canMove;
+    }
+    
+    public void setCanMove(boolean b){
+    	this.canMove = b;
+    }
 	
 
 
@@ -326,8 +340,6 @@ public class Player {
 		tmp.append(" Hand: ");
 		for(Card c: this.getHand() )
 			tmp.append(c+"\n");
-		
-		tmp.append( "\n Tmp: "+ this.getTmp() + "\n");
 		
 		tmp.append( "\n Safety: ");
 		for(Card c: this.getSatefy().cards )

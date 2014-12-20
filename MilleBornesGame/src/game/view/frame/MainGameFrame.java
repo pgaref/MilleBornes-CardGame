@@ -9,10 +9,13 @@ import game.Player.Player;
 import game.master.GameMaster;
 import game.view.client.IGameClient;
 import game.view.panels.GameInfoPanel;
-import game.view.panels.InitPlayers;
 import game.view.panels.PlayersPanel;
+
 import java.awt.BorderLayout;
+import java.awt.event.WindowEvent;
+
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -30,17 +33,25 @@ public class MainGameFrame extends javax.swing.JFrame implements IGameClient{
     
     /** The gameinfo. */
     private final GameInfoPanel gameinfo;
+   
+    private String p1 ,p2;
     
     /**
      * Creates new form MainGameFrame.
      */
+   
+   
     public MainGameFrame() {
         super("MilleBornes Game");
    //     InitPlayers players = new InitPlayers(null,true);
    //     Object [] playerNames =  players.getPlayers().toArray();
+//        this.p1 = String.valueOf(playerNames[0]);
+//        this.p2 = String.valueOf(playerNames[1]);
    //     this.game = new GameMaster(String.valueOf(playerNames[0]), String.valueOf(playerNames[1]));
         
-        this.game = new GameMaster("a", "b");
+        p1 = "a";
+        p2 = "b";
+        this.game = new GameMaster(this, p1, p2);
         
         this.playersSpace = new PlayersPanel(game);
         this.gameinfo = new GameInfoPanel(game,playersSpace);
@@ -156,8 +167,19 @@ public class MainGameFrame extends javax.swing.JFrame implements IGameClient{
     /* (non-Javadoc)
      * @see game.view.client.IGameClient#showWinnerPanel(java.lang.String)
      */
-    @Override
-    public void showWinnerPanel(String _winner) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+	@Override
+	public void showWinnerPanel(String _winner) {
+		
+		int n = JOptionPane.showConfirmDialog(this,
+				"Would you like to play again?", "Game Finished! Winner is: "+ _winner,
+				JOptionPane.YES_NO_OPTION);
+
+		if (n == JOptionPane.YES_OPTION) {
+			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+			
+		} else if (n == JOptionPane.NO_OPTION) {
+			this.dispatchEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));
+		}
+
+	}
 }

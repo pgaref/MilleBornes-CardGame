@@ -66,7 +66,8 @@ public class Deck {
         	p1.getHand().add(allCards.remove(allCards.size()-1));
         	p2.getHand().add(allCards.remove(allCards.size()-1));
         }
-        p1.getSpeed().cards.add(new Distance(50));
+      
+        //  p1.getSpeed().cards.add(new Distance(50));
         
         
         this.drawCards.setCards(allCards);

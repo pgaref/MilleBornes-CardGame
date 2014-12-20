@@ -27,8 +27,8 @@ public class FlatTire extends Hazard {
 	@Override
 	public boolean match(Card other) {
 		
-		if ((other instanceof PunctureProofTire) || ( other instanceof SpareTire))
-			return true;
+		//if ((other instanceof PunctureProofTire) || ( other instanceof SpareTire))
+		//	return true;
 		return false;
 
 	}

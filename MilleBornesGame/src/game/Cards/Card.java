@@ -19,7 +19,7 @@ public abstract class Card
     private double credits;
     
     /** The value. */
-    private double value;
+    private int value;
     
     /** The image path. */
     private String imagePath;
@@ -60,7 +60,7 @@ public abstract class Card
      * Returns the value of the card (Accessor).
      * @return the value
      */
-    public double getValue() {
+    public int getValue() {
         return value;
     }
 
@@ -70,7 +70,7 @@ public abstract class Card
      *
      * @param value The card value!
      */
-    public void setValue(double value) {
+    public void setValue(int value) {
         this.value = value;
     }
     

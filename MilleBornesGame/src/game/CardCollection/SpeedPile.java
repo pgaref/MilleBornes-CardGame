@@ -6,6 +6,9 @@
 package game.CardCollection;
 
 import game.Cards.Card;
+import game.Cards.EndOfSpeedLimit;
+import game.Cards.SpeedLimit;
+
 import java.util.ArrayList;
 
 // TODO: Auto-generated Javadoc
@@ -45,8 +48,10 @@ public class SpeedPile extends AbstractPile{
      * @see game.CardCollection.AbstractPile#addCard(game.Cards.Card)
      */
     public void addCard(Card tmp) throws NotSupportedOperationException{
-        throw new NotSupportedOperationException("Cannnot add Card "+tmp);
+    	if((tmp instanceof SpeedLimit) || (tmp instanceof EndOfSpeedLimit))
+    		this.cards.add(tmp);
+    	else
+    		throw new NotSupportedOperationException("Cannnot add Card "+tmp);
+    		
     }
-    
-    
 }

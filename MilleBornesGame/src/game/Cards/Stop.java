@@ -24,8 +24,8 @@ public class Stop extends Hazard {
 	 */
 	@Override
 	public boolean match(Card other) {
-		if( (other instanceof Start) )
-     		return true;
+		//if( (other instanceof Start)  || (other instanceof Priority))
+     	//	return true;
      	return false;
 	}
 

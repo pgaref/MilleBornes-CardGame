@@ -25,8 +25,8 @@ public class OutOfGas extends Hazard{
       */
      @Override
     public boolean match(Card other) {
-    	 if((other instanceof ExtraTank) || ( other instanceof Gas))
-     		return true;
+    	// if((other instanceof ExtraTank) || ( other instanceof Gas))
+     	//	return true;
      	return false;
     }
 }

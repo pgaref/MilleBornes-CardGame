@@ -48,4 +48,5 @@ public class DiscardPile extends AbstractPile{
     public void addCard(Card tmp){
         cards.add(tmp);
     }
+    
 }

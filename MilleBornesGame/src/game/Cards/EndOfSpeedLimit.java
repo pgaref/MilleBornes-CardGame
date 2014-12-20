@@ -24,7 +24,8 @@ public class EndOfSpeedLimit extends Remedy {
 	 */
 	@Override
 	public boolean match(Card other) {
-		// TODO Auto-generated method stub
+		if(other instanceof SpeedLimit)
+			return true;
 		return false;
 	}
 

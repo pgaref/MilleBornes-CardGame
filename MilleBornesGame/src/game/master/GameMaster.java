@@ -5,14 +5,19 @@
  */
 package game.master;
 
+import game.CardCollection.NotSupportedOperationException;
 import game.Cards.Card;
 import game.Cards.Distance;
+import game.Cards.Hazard;
+import game.Cards.Priority;
+import game.Cards.Remedy;
+import game.Cards.Safety;
+import game.Cards.Start;
 import game.Player.Player;
 import game.view.client.IGameClient;
 
 import javax.swing.JFrame;
 
-// TODO: Auto-generated Javadoc
 /**
  *  This class is responsible to start the Game using all the classes needed from the Game Model.
  *  Meaning this is the class the Controller will call to connect it with the view.
@@ -68,7 +73,7 @@ public class GameMaster implements Game{
      *
      * @param one the one
      * @param two the two
-     */
+     
     public GameMaster(String one, String two) {
     	
         this.deck = new Deck(one, two);
@@ -78,6 +83,7 @@ public class GameMaster implements Game{
         
         this.currPlayer = deck.getP1();
     }
+    */
     
     /**
      * Instantiates a new game master.
@@ -85,7 +91,7 @@ public class GameMaster implements Game{
      * @param one the one
      * @param two the two
      * @param v the v
-     */
+     
     public GameMaster(String one, String two, JFrame v) {
     	
         this.deck = new Deck(one, two);
@@ -94,7 +100,7 @@ public class GameMaster implements Game{
         
         this.currPlayer = deck.getP1();
         this.view = v;
-    }
+    }*/
     
     
     /**
@@ -106,13 +112,11 @@ public class GameMaster implements Game{
     public boolean playerSelectsToPass()
     {
     	if(this.currPlayer.getHand().size()>6){
+    		System.out.println("You have to discard a Card!!");
     		return false;
     	}
     	else{
-    		if(this.currPlayer .getName().compareTo( deck.getP1().getName()) ==0)
-    			this.currPlayer=deck.getP2();
-    		else
-    			this.currPlayer = deck.getP1();
+    		this.currPlayer=this.getNextPlayer();
     		System.out.println("Changing player to: "+ this.currPlayer.getName());
     	}
     	return true;
@@ -120,14 +124,17 @@ public class GameMaster implements Game{
     
 
 	public boolean playerDiscardsCard(Card card) {
+		
+		if(card == null){
+			System.out.println("Cannot through NULL card! Pick a card!");
+			return false;
+		}
+		
 		if(this.currPlayer.canDiscardCard() && this.currPlayer.getHand().size()>1){
 			this.currPlayer.getHand().remove(card);	
 			this.deck.getDiscardCards().cards.add(card);
 			
-			if(this.currPlayer .getName().compareTo( deck.getP1().getName()) ==0)
-    			this.currPlayer=deck.getP2();
-    		else
-    			this.currPlayer = deck.getP1();
+			this.currPlayer=this.getNextPlayer();
     		System.out.println("Changing player to: "+ this.currPlayer.getName());
 			return true;
 		}
@@ -141,10 +148,90 @@ public class GameMaster implements Game{
      * @param p The player who dropped a  cards
      * @param c The card
      * @return true if card was valid, otherwise false
+     * @throws NotSupportedOperationException 
      */
-    public boolean playerSubmitsCard(Card c)
+    public boolean playerSubmitsCard(Card c) throws NotSupportedOperationException
     {
-        return false;
+    	boolean foundMatch = false;
+    	/**
+		 * ALL Functionality goes here!!!
+		 */
+		
+    	if(c instanceof Distance){
+    		if(this.currPlayer.canThrowMileCard(c)){
+    			
+    			this.currPlayer.getHand().remove(c);
+    			this.currPlayer.getDistance().addCard(c);
+    			this.currPlayer.addMilesRun(c.getValue());
+    			foundMatch = true;
+    		}
+    		
+    	}
+    	else if(c instanceof Safety ){
+    		this.currPlayer.getSatefy().addCard(c);
+    		this.currPlayer.getHand().remove(c);
+    		//Check for possible fixes
+    		if((!this.currPlayer.getBattle().cards.isEmpty()) && (c.match(this.currPlayer.getBattle().getLastCard()))){
+    			this.currPlayer.getBattle().addCard(c);
+    			this.currPlayer.setCanMove(true);
+    			if(c instanceof Priority)
+    				this.currPlayer.setHasStarted(true);
+    		}
+    		
+    		
+    		foundMatch = true;
+    	}
+    	
+    	else if(c instanceof Hazard ){
+    		
+    		
+    		
+    	}
+    	else if(c instanceof Remedy ){
+    		
+    		if(c instanceof Start && !this.currPlayer.hasStarted() ){
+    			if(this.currPlayer.getBattle().getCards().isEmpty()){
+    				this.currPlayer.setHasStarted(true);
+    				this.currPlayer.getBattle().addCard(c);
+    				this.currPlayer.getHand().remove(c);
+    				foundMatch = true;
+    			}
+    			else if(! (this.currPlayer.getBattle().getLastCard() instanceof Hazard)){
+    				this.currPlayer.setHasStarted(true);
+    				this.currPlayer.getBattle().addCard(c);
+    				this.currPlayer.getHand().remove(c);
+    				foundMatch = true;
+    			}
+    			
+    		}
+    		else if( (!this.currPlayer.getBattle().getCards().isEmpty()) && (c.match(this.currPlayer.getBattle().getLastCard())) ){
+    			
+    			this.currPlayer.getBattle().addCard(c);
+    			this.currPlayer.getHand().remove(c);
+    			foundMatch = true;
+    		}
+    		else if((!this.currPlayer.getSpeed().getCards().isEmpty()) && (c.match(this.currPlayer.getSpeed().getLastCard())) ){
+    			
+    			this.currPlayer.getHand().remove(c);
+    			this.currPlayer.getSpeed().clearPile();
+    			this.currPlayer.setCanMove(true);
+    			foundMatch = true;
+    		}
+    		
+    	}
+    	
+    	
+    	if(foundMatch && (c instanceof Safety)){
+    		return true;
+    	}
+    	if(foundMatch && !(c instanceof Safety)){
+    		
+    		this.currPlayer=this.getNextPlayer();
+    		System.out.println("Changing player to: "+ this.currPlayer.getName());
+    		return true;
+    	}
+    	else
+    		return false;
 	}
 
 	/**
@@ -155,7 +242,7 @@ public class GameMaster implements Game{
 	 * @return true if card was drawn, otherwise false
 	 */
     public boolean playerDrawCard(){
-    	if(!this.currPlayer.hasDrawnCard()){
+    	if(!this.currPlayer.hasDrawnCard() && (this.currPlayer.getHand().size() == 6)){
     		Card tmp = this.deck.getDrawCards().getCards().remove(this.deck.getDrawCards().getCards().size()-1);
     		this.currPlayer.getHand().add(tmp);
     		this.currPlayer.changeDrawnCard(true);
@@ -231,6 +318,13 @@ public class GameMaster implements Game{
      */
     public Player getCurrentPlayer() {
         return currPlayer;
+    }
+    
+    public Player getNextPlayer(){
+    	if(this.currPlayer .getName().compareTo( deck.getP1().getName()) ==0)
+			return deck.getP2();
+		else
+			return deck.getP1();
     }
     
 
@@ -333,5 +427,9 @@ public class GameMaster implements Game{
 		this.deck = deck;
 	}
 
+	
+	public IGameClient  getGameClient(){
+		return this.client;
+	}
     
 }

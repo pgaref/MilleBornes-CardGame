@@ -4,15 +4,11 @@
  */
 package game.view.panels;
 
-import game.Cards.Card; 
-import java.awt.event.ActionEvent; 
-import javax.swing.JButton; 
-import javax.swing.JLabel; 
-import javax.swing.JPanel;
+import game.CardCollection.NotSupportedOperationException;
+import game.Cards.Card;
+import game.Cards.Safety;
 import game.master.GameMaster;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javax.swing.JTextField;
 
 
@@ -31,6 +27,23 @@ public class GameInfoPanel extends javax.swing.JPanel {
     /** The players. */
     private PlayersPanel players;
     
+ // Variables declaration 
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JButton passButton;
+    private javax.swing.JButton playButton;
+    private javax.swing.JLabel playername;
+    private javax.swing.JTextField player1points;
+    private javax.swing.JTextField player2points;
+    private javax.swing.JButton throwCards;
+    
+    
     /**
      * Instantiates a new game info panel.
      *
@@ -42,10 +55,10 @@ public class GameInfoPanel extends javax.swing.JPanel {
         game = _game;
         players = _players;
         
-        team1points.setText("0");
-        team2points.setText("0");
-        team1points.setHorizontalAlignment(JTextField.RIGHT);
-        team2points.setHorizontalAlignment(JTextField.RIGHT);        
+        player1points.setText("0");
+        player2points.setText("0");
+        player1points.setHorizontalAlignment(JTextField.RIGHT);
+        player2points.setHorizontalAlignment(JTextField.RIGHT);        
     }
     
     /**
@@ -68,11 +81,13 @@ public class GameInfoPanel extends javax.swing.JPanel {
 
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        team2points = new javax.swing.JTextField();
+
+        player1points = new javax.swing.JTextField();
+        player2points = new javax.swing.JTextField();
+        
         jLabel3 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        team1points = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
@@ -88,8 +103,8 @@ public class GameInfoPanel extends javax.swing.JPanel {
 
         jLabel9.setText("Miles");
 
-        team2points.setEditable(false);
-        team2points.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        player2points.setEditable(false);
+        player2points.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -99,7 +114,7 @@ public class GameInfoPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel9)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(team2points, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
+                .addComponent(player2points, javax.swing.GroupLayout.DEFAULT_SIZE, 98, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
@@ -108,7 +123,7 @@ public class GameInfoPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel9)
-                    .addComponent(team2points, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(player2points, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
         );
 
@@ -119,8 +134,8 @@ public class GameInfoPanel extends javax.swing.JPanel {
 
         jLabel4.setText("Miles");
 
-        team1points.setEditable(false);
-        team1points.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        player1points.setEditable(false);
+        player1points.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -130,7 +145,7 @@ public class GameInfoPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addComponent(jLabel4)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(team1points)
+                .addComponent(player1points)
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -139,7 +154,7 @@ public class GameInfoPanel extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(team1points, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(player1points, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40))
         );
 
@@ -158,14 +173,14 @@ public class GameInfoPanel extends javax.swing.JPanel {
                 playButtonActionPerformed(evt);
             }
         });
-
+        
         passButton.setText("Pass");
-        //passButton.setEnabled(false);
-        passButton.addActionListener(new java.awt.event.ActionListener() {
+        passButton.setEnabled(false);
+        /*passButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 passButtonActionPerformed(evt);
             }
-        });
+        });*/
 
         throwCards.setText("Dismiss Card");
         throwCards.addActionListener(new java.awt.event.ActionListener() {
@@ -246,16 +261,48 @@ public class GameInfoPanel extends javax.swing.JPanel {
      * @param evt the evt
      */
     private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
-        // TODO add your handling code here:
+       
+    	if(!game.getCurrentPlayer().hasDrawnCard()){
+    		System.out.println("Please draw a card first!");
+    		return;
+    	}	
+    	
+    	Card card = getPlayers().getSelectedCard();
+        System.out.println("Got card: "+ card);
         
-    }//GEN-LAST:event_playButtonActionPerformed
-
+        try{
+        	
+        	if(game.playerSubmitsCard(card)){
+        		
+        		//if player throws a Safety Card, player plays again
+        		if(!(card instanceof Safety) )
+        			getPlayers().changePlayerTurn();
+        		else{
+        			game.getCurrentPlayer().changeDrawnCard(false);
+        			players.currPlayerDraw();
+        		}
+        		//update Panel Stats anyway
+        		this.updatePlayerPoints();
+        		
+        	}
+        	
+        }catch(NotSupportedOperationException ex){
+        	System.err.println("Cannot Throw card: "+ card);	
+        	ex.printStackTrace();
+        }
+        
+    }
     /**
      * Pass button action performed.
      *
      * @param evt the evt
-     */
+     
     private void passButtonActionPerformed(java.awt.event.ActionEvent evt) {	
+    	
+    	if(!game.getCurrentPlayer().hasDrawnCard()){
+    		System.out.println("Please draw a card first!");
+    		return;
+    	}
     	
     	if( game.playerSelectsToPass()) {
     		System.out.println("Player can pass");
@@ -274,53 +321,25 @@ public class GameInfoPanel extends javax.swing.JPanel {
        
     	Card card = getPlayers().getSelectedCard();
         System.out.println("Got card: "+ card);   
-        game.playerDiscardsCard(card);
-        getPlayers().changePlayerTurn();
+       
+        if(game.playerDiscardsCard(card))
+        	getPlayers().changePlayerTurn();
     }
     
-    // Variables declaration - do not modify//GEN-BEGIN:variables
-    /** The j label1. */
-    private javax.swing.JLabel jLabel1;
     
-    /** The j label2. */
-    private javax.swing.JLabel jLabel2;
     
-    /** The j label3. */
-    private javax.swing.JLabel jLabel3;
-    
-    /** The j label4. */
-    private javax.swing.JLabel jLabel4;
-    
-    /** The j label9. */
-    private javax.swing.JLabel jLabel9;
-    
-    /** The j panel1. */
-    private javax.swing.JPanel jPanel1;
-    
-    /** The j panel2. */
-    private javax.swing.JPanel jPanel2;
-    
-    /** The j panel3. */
-    private javax.swing.JPanel jPanel3;
-    
-    /** The pass button. */
-    private javax.swing.JButton passButton;
-    
-    /** The play button. */
-    private javax.swing.JButton playButton;
-    
-    /** The playername. */
-    private javax.swing.JLabel playername;
-    
-    /** The team1points. */
-    private javax.swing.JTextField team1points;
-    
-    /** The team2points. */
-    private javax.swing.JTextField team2points;
-    
-    /** The throw cards. */
-    private javax.swing.JButton throwCards;
-    // End of variables declaration//GEN-END:variables
+    private void updatePlayerPoints(){
+    	
+    	this.player1points.setText(this.game.getFirstPlayer().getMilesRun()+"");
+    	this.player2points.setText(this.game.getSecondPlayer().getMilesRun()+"");
+    	
+    	//Winner case
+    	if( this.game.getFirstPlayer().getMilesRun() == 1000 )
+    		game.getGameClient().showWinnerPanel(this.game.getFirstPlayer().getName());
+    	else if( this.game.getSecondPlayer().getMilesRun() == 1000 )
+    		game.getGameClient().showWinnerPanel(this.game.getSecondPlayer().getName());
+    	
+    }
 
 
 

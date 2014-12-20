@@ -26,8 +26,8 @@ public class Accident extends Hazard{
     @Override
     public boolean match(Card other) {
     	
-    	if((other instanceof Repair) || ( other instanceof DrivingAce))
-    		return true;
+    	//if((other instanceof Repair) || ( other instanceof DrivingAce))
+    	//	return true;
     	return false;
     }
     

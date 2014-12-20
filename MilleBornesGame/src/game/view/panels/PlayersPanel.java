@@ -145,11 +145,17 @@ public class PlayersPanel extends JPanel {
     	
         Player current = game.getCurrentPlayer();
         
-        if(up.getPlayer().getName().equals(current.getName()))
-            up.RepaintCards();
-        
-        else if(down.getPlayer().getName().equals(current.getName()))
-            down2.RepaintCards();
+        if(up.getPlayer().getName().equals(current.getName())){
+            
+        	up.RepaintCards();
+            up2.RepaintExtraCards();
+        }
+        else if(down.getPlayer().getName().equals(current.getName())){
+            
+        	down.RepaintExtraCards();
+        	down2.RepaintCards();
+            
+        }
     }
     
     /* (non-Javadoc)

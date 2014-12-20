@@ -45,6 +45,11 @@ public abstract class AbstractPile
     public void setCards(ArrayList<Card> cards) {
         this.cards = cards;
     }
+    
+    
+	public void clearPile() {
+		this.cards = new ArrayList<Card>();
+	}
 
     
     /**
@@ -85,6 +90,17 @@ public abstract class AbstractPile
         
     }
 
+    /*
+     * Returns  the last Card in the pile
+     */
+    public Card getLastCard(){
+    	if(this.cards.size() >0)
+    		return this.cards.get(this.cards.size()-1);
+    	else{
+    		System.out.println("Get last Card from Empty Pile!");
+    		return null;
+    	}
+    }
    
     
 }

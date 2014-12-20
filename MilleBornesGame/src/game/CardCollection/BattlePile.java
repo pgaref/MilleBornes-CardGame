@@ -6,6 +6,10 @@
 package game.CardCollection;
 
 import game.Cards.Card;
+import game.Cards.Hazard;
+import game.Cards.Remedy;
+import game.Cards.Safety;
+
 import java.util.ArrayList;
 
 // TODO: Auto-generated Javadoc
@@ -46,7 +50,18 @@ public class BattlePile extends AbstractPile{
      * @see game.CardCollection.AbstractPile#addCard(game.Cards.Card)
      */
     public void addCard(Card tmp) throws NotSupportedOperationException{
-        throw new NotSupportedOperationException("Cannnot add Card "+tmp);
+    	
+    	if( (tmp instanceof Hazard)  || (tmp instanceof Remedy) || (tmp instanceof Safety))
+    		this.cards.add(tmp);
+    	else
+    		throw new NotSupportedOperationException("Cannnot add Card "+tmp);
+    }
+    
+    /*
+     * Returns  the last Card in the pile
+     */
+    public Card getLastCard(){
+    	return this.cards.get(this.cards.size()-1);
     }
     
 }

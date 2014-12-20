@@ -49,8 +49,15 @@ public class SafetyPile extends AbstractPile{
     public void addCard(Card tmp) throws NotSupportedOperationException{
     	if(!(tmp instanceof Safety))
     		throw new NotSupportedOperationException("Cannnot add Card "+tmp);
-    	else
+    	else{
+    		for(Card c : this.cards)
+    			if(c.getImagePath().compareTo(tmp.getImagePath()) == 0){
+    				System.out.println("Duplicate safety Card! ");
+    				return;
+    			}	
     		this.cards.add(tmp);
+    		
+    	}
     }
     
     
