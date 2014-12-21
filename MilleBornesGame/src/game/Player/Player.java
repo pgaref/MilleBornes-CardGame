@@ -12,6 +12,8 @@ import game.CardCollection.SafetyPile;
 import game.CardCollection.SpeedPile;
 import game.Cards.Card;
 import game.Cards.Distance;
+import game.Cards.Hazard;
+import game.Cards.Priority;
 
 import java.util.ArrayList;
 
@@ -125,18 +127,27 @@ public class Player {
     		return false;
     	}
     	
-    	//Not started case
-//    	if(this.hasStarted == false){
-//    		System.out.println("You need a Roll/Priority Card to start playing!");
-//    		return false;
-//    	}
-    	
-    	
+    	//Not started && without priority card case!
+    	if( (this.hasStarted == false) && (this.hasPriorityCard() == false) ){
+    		System.out.println("You need a Roll/Priority Card to start playing!");
+    		return false;
+    	}
+    	//There is a Hazard in the Battle Pile!!
+    	if(this.hasHazard() == false){
+    		System.out.println("You need to fix that Hazard first!!!");
+    		return false;
+    	}
+    	//There is a Speed limit case
+    	if(!this.getSpeed().getCards().isEmpty() && (c.getValue()>50)){
+    		System.out.println("There is a Speed Limit! Select less than 50 miles Card!");
+    		return false;
+    	}
     	//More than 1k case
     	if(getMilesRun() + c.getValue() > 1000){
             System.out.println("The total Miles cannot be more than 1000!!!!");
     		return false;
     	}
+    	
     	
         //Up to 2  -> 200 miles Cards allowed!
     	if( (c.getValue() == 200) && (this.topMileCounter() <2) )
@@ -151,7 +162,22 @@ public class Player {
         
         return true;        
     }
-    /**
+    private boolean hasHazard() {
+		if(this.getBattle().getLastCard() instanceof Hazard)
+			return false;
+		return true;
+	}
+
+	public boolean hasPriorityCard() {
+
+    	for(Card tmp : this.getSatefy().getCards()){
+    		if(tmp instanceof Priority)
+    			return true;
+    	}
+		return false;
+	}
+
+	/**
      * Method to count 200 Mile Cards!
      * @return
      */

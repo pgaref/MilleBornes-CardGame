@@ -117,6 +117,9 @@ public class PlayersPanel extends JPanel {
         
         if(up.getPlayer().getName().equals(current.getName())){
             activepanel = up;
+            
+            up.RepaintCards();
+            up2.RepaintExtraCards();
             up.changeCurrentPlayerColor();
             up2.changeCurrentPlayerColor();
             
@@ -127,6 +130,8 @@ public class PlayersPanel extends JPanel {
         else if(down.getPlayer().getName().equals(current.getName())){
             activepanel = down2;
             
+            down.RepaintExtraCards();
+        	down2.RepaintCards();
             down.changeCurrentPlayerColor();;
             down2.changeCurrentPlayerColor();
             

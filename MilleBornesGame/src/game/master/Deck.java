@@ -30,7 +30,6 @@ import game.Player.Player;
 import java.util.ArrayList;
 import java.util.Collections;
 
-// TODO: Auto-generated Javadoc
 /**
  *  This class is representing the Deck of the Game,
  *  including the drawCards, discardCard and the two players.
@@ -65,11 +64,7 @@ public class Deck {
         for(int i = 0 ; i < 6; i++){
         	p1.getHand().add(allCards.remove(allCards.size()-1));
         	p2.getHand().add(allCards.remove(allCards.size()-1));
-        }
-      
-        //  p1.getSpeed().cards.add(new Distance(50));
-        
-        
+        }  
         this.drawCards.setCards(allCards);
         
     }

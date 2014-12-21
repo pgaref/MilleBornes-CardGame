@@ -24,7 +24,8 @@ public class Start extends Remedy {
 	 */
 	@Override
 	public boolean match(Card other) {
-		// TODO Auto-generated method stub
+		if(other instanceof Stop)
+			return true;
 		return false;
 	}
 

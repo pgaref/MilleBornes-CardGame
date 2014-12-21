@@ -12,7 +12,9 @@ import game.Cards.Hazard;
 import game.Cards.Priority;
 import game.Cards.Remedy;
 import game.Cards.Safety;
+import game.Cards.SpeedLimit;
 import game.Cards.Start;
+import game.Cards.Stop;
 import game.Player.Player;
 import game.view.client.IGameClient;
 
@@ -171,26 +173,73 @@ public class GameMaster implements Game{
     		this.currPlayer.getSatefy().addCard(c);
     		this.currPlayer.getHand().remove(c);
     		//Check for possible fixes
+    		//TODO maybe need more code here!!!
     		if((!this.currPlayer.getBattle().cards.isEmpty()) && (c.match(this.currPlayer.getBattle().getLastCard()))){
     			this.currPlayer.getBattle().addCard(c);
     			this.currPlayer.setCanMove(true);
     			if(c instanceof Priority)
     				this.currPlayer.setHasStarted(true);
     		}
-    		
+    		//Check the speed Pile too
+    		if((!this.currPlayer.getSpeed().cards.isEmpty()) && (c.match(this.currPlayer.getSpeed().getLastCard()))){
+    			this.currPlayer.getSpeed().clearPile();
+    			this.currPlayer.setCanMove(true);
+    			if(c instanceof Priority)
+    				this.currPlayer.setHasStarted(true);
+    		}
     		
     		foundMatch = true;
     	}
     	
     	else if(c instanceof Hazard ){
+    		Player other = this.getNextPlayer();
     		
+    		//Check if it eligible to throw a Hazard card!
+    		if(!(other.hasStarted()) && (other.getBattle().getCards().isEmpty() && !(other.hasPriorityCard()) )){
+    			System.out.println("Not eligible to throw a Hazard card!!!");
+    			return false;
+    		}
+    		//Check if there is a safety card preventing us to throw the card!
+    		for(Card tmp : other.getSatefy().getCards()){
+    			if(tmp.match(c)){
+    				System.out.println("Safety Card prevents that action!!!");
+    				return false;
+    			}
+    		}
+    		//Check if Card is Speed Limit 
+    		if(c instanceof SpeedLimit){
+    			other.setCanMove(true);
+    			other.getSpeed().addCard(c);
+    			this.currPlayer.getHand().remove(c);
+    		}
+    		//In any other case
+    		else{
+    			
+    			other.setCanMove(false);
+    			other.setHasStarted(false);
+    			other.getBattle().addCard(c);
+    			this.currPlayer.getHand().remove(c);
+    			
+    		}
     		
+    		this.currPlayer=this.getNextPlayer();
+    		System.out.println("Changing player to: "+ this.currPlayer.getName());
+    		return true;
     		
     	}
     	else if(c instanceof Remedy ){
     		
-    		if(c instanceof Start && !this.currPlayer.hasStarted() ){
+    		//Start Card case is different since we need to change player info!
+    		if(c instanceof Start && (this.currPlayer.hasStarted()==false) ){
     			if(this.currPlayer.getBattle().getCards().isEmpty()){
+    				this.currPlayer.setHasStarted(true);
+    				this.currPlayer.setCanMove(true);
+    				this.currPlayer.getBattle().addCard(c);
+    				this.currPlayer.getHand().remove(c);
+    				foundMatch = true;
+    			}
+    			//Start Card matches with Stop at Battle Pile
+    			else if(this.currPlayer.getBattle().getLastCard() instanceof Stop){
     				this.currPlayer.setHasStarted(true);
     				this.currPlayer.getBattle().addCard(c);
     				this.currPlayer.getHand().remove(c);
@@ -242,7 +291,14 @@ public class GameMaster implements Game{
 	 * @return true if card was drawn, otherwise false
 	 */
     public boolean playerDrawCard(){
-    	if(!this.currPlayer.hasDrawnCard() && (this.currPlayer.getHand().size() == 6)){
+    	
+    	//If there are no cards left at the Draw Pile!
+    	if(this.deck.getDrawCards().getCards().isEmpty()){
+    		this.currPlayer.changeDrawnCard(true);
+    		return true;
+    	}
+    	//In any other case
+    	else if(!this.currPlayer.hasDrawnCard() && (this.currPlayer.getHand().size() == 6)){
     		Card tmp = this.deck.getDrawCards().getCards().remove(this.deck.getDrawCards().getCards().size()-1);
     		this.currPlayer.getHand().add(tmp);
     		this.currPlayer.changeDrawnCard(true);

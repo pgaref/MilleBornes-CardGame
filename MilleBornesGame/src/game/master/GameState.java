@@ -5,8 +5,6 @@
  */
 package game.master;
 
-
-   // TODO: Auto-generated Javadoc
 /**
     * An enumeration for the various game modes.
     *

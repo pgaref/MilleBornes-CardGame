@@ -8,6 +8,7 @@ import game.CardCollection.NotSupportedOperationException;
 import game.Cards.Card;
 import game.Cards.Safety;
 import game.master.GameMaster;
+import game.master.GameState;
 
 import javax.swing.JTextField;
 
@@ -333,11 +334,25 @@ public class GameInfoPanel extends javax.swing.JPanel {
     	this.player1points.setText(this.game.getFirstPlayer().getMilesRun()+"");
     	this.player2points.setText(this.game.getSecondPlayer().getMilesRun()+"");
     	
-    	//Winner case
-    	if( this.game.getFirstPlayer().getMilesRun() == 1000 )
+    	//Winner case, update game state and show final Jpanel!
+    	if( this.game.getFirstPlayer().getMilesRun() == 1000 ){
+    		this.game.setState(GameState.FINISHED);
     		game.getGameClient().showWinnerPanel(this.game.getFirstPlayer().getName());
-    	else if( this.game.getSecondPlayer().getMilesRun() == 1000 )
+    	}
+    	else if( this.game.getSecondPlayer().getMilesRun() == 1000 ){
+    		this.game.setState(GameState.FINISHED);
     		game.getGameClient().showWinnerPanel(this.game.getSecondPlayer().getName());
+    	}
+    	
+    	//Out of cards Case! The first player who runs out of card wins!
+    	if(this.game.getFirstPlayer().getHand().size() == 0){
+    		this.game.setState(GameState.FINISHED);
+    		game.getGameClient().showWinnerPanel(this.game.getFirstPlayer().getName());
+    	}
+    	else if(this.game.getSecondPlayer().getHand().size() == 0){
+    		this.game.setState(GameState.FINISHED);
+    		game.getGameClient().showWinnerPanel(this.game.getSecondPlayer().getName());
+    	}
     	
     }
 
