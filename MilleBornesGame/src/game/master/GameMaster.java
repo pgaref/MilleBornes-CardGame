@@ -132,11 +132,12 @@ public class GameMaster implements Game{
 			return false;
 		}
 		
-		if(this.currPlayer.canDiscardCard() && this.currPlayer.getHand().size()>1){
+		if(this.currPlayer.canDiscardCard() && this.currPlayer.getHand().size()>=1){
 			this.currPlayer.getHand().remove(card);	
 			this.deck.getDiscardCards().cards.add(card);
 			
 			this.currPlayer=this.getNextPlayer();
+			this.client.changePlayer();
     		System.out.println("Changing player to: "+ this.currPlayer.getName());
 			return true;
 		}
@@ -172,16 +173,22 @@ public class GameMaster implements Game{
     	else if(c instanceof Safety ){
     		this.currPlayer.getSatefy().addCard(c);
     		this.currPlayer.getHand().remove(c);
-    		//Check for possible fixes
-    		//TODO maybe need more code here!!!
-    		if((!this.currPlayer.getBattle().cards.isEmpty()) && (c.match(this.currPlayer.getBattle().getLastCard()))){
+    		
+    		//Empty Piles Case
+    		if((this.currPlayer.getBattle().cards.isEmpty()) && (this.currPlayer.getSpeed().cards.isEmpty())  ){
+    			this.currPlayer.setCanMove(true);
+    			if(c instanceof Priority)
+    				this.currPlayer.setHasStarted(true);
+    		}
+    		//Check for possible fixes at Battle Pile
+    		else if((!this.currPlayer.getBattle().cards.isEmpty()) && (c.match(this.currPlayer.getBattle().getLastCard()))){
     			this.currPlayer.getBattle().addCard(c);
     			this.currPlayer.setCanMove(true);
     			if(c instanceof Priority)
     				this.currPlayer.setHasStarted(true);
     		}
-    		//Check the speed Pile too
-    		if((!this.currPlayer.getSpeed().cards.isEmpty()) && (c.match(this.currPlayer.getSpeed().getLastCard()))){
+    		//Check the Speed Pile too
+    		else if((!this.currPlayer.getSpeed().cards.isEmpty()) && (c.match(this.currPlayer.getSpeed().getLastCard()))){
     			this.currPlayer.getSpeed().clearPile();
     			this.currPlayer.setCanMove(true);
     			if(c instanceof Priority)
@@ -194,8 +201,9 @@ public class GameMaster implements Game{
     	else if(c instanceof Hazard ){
     		Player other = this.getNextPlayer();
     		
-    		//Check if it eligible to throw a Hazard card!
-    		if(!(other.hasStarted()) && (other.getBattle().getCards().isEmpty() && !(other.hasPriorityCard()) )){
+
+    		//Check if it eligible to throw a Hazard card according to the rules!
+    		if(!(other.hasStarted()) && (other.getBattle().getCards().isEmpty()) && !(other.hasPriorityCard()) &&( !(c instanceof SpeedLimit ))){
     			System.out.println("Not eligible to throw a Hazard card!!!");
     			return false;
     		}
@@ -223,6 +231,7 @@ public class GameMaster implements Game{
     		}
     		
     		this.currPlayer=this.getNextPlayer();
+    		this.client.changePlayer();
     		System.out.println("Changing player to: "+ this.currPlayer.getName());
     		return true;
     		
@@ -276,6 +285,7 @@ public class GameMaster implements Game{
     	if(foundMatch && !(c instanceof Safety)){
     		
     		this.currPlayer=this.getNextPlayer();
+    		this.client.changePlayer();
     		System.out.println("Changing player to: "+ this.currPlayer.getName());
     		return true;
     	}

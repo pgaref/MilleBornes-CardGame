@@ -5,7 +5,6 @@
  */
 package game.master;
 
-// TODO: Auto-generated Javadoc
 /**
  * This interface describes a generic set of supported operations
  * that can be found in every game such as start/stop/pause etc.

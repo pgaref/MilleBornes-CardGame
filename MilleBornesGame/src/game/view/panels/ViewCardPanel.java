@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import javax.swing.JLabel;
 import javax.swing.JLayeredPane;
 
-// TODO: Auto-generated Javadoc
 /**
  * This class represents a Panel for displaying the Cards
  * The oponnent cards will be displayed in Mirror.

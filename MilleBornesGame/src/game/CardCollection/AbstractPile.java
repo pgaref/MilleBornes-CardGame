@@ -9,7 +9,6 @@ import game.Cards.Card;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
  * This card represent a collection of cards. Extensions of this
  * class could be card collection with special characteristics.

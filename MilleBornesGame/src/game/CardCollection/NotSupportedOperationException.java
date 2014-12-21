@@ -5,7 +5,6 @@
  */
 package game.CardCollection;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class NotSupportedOperationException.
  *

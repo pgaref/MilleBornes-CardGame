@@ -4,19 +4,16 @@
  */
 package game.view.panels;
 
+import game.Cards.Card;
+import game.Player.Player;
+import game.master.GameMaster;
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Graphics;
-import java.util.ArrayList;
+
 import javax.swing.ImageIcon;
 import javax.swing.JPanel;
-import game.Cards.*;
-import game.Player.Player;
-import game.CardCollection.*;
-import game.master.GameMaster;
-import java.awt.Color;
-import java.awt.GridBagLayout;
 
-// TODO: Auto-generated Javadoc
 /**
  * This class represents a Player Panel 
  * including the 2 different horizontal views for each player and the central panel.
@@ -86,9 +83,6 @@ public class PlayersPanel extends JPanel {
         doublePanel1.setBackground(Color.lightGray);
         this.add(doublePanel1, BorderLayout.PAGE_END);
         
-//        this.add(up, BorderLayout.PAGE_START);
-//        this.add(down, BorderLayout.LINE_END);
-//        this.add(down2);
         
         JPanel doublePanel2 = new JPanel();
         doublePanel2.setLayout( new BorderLayout());

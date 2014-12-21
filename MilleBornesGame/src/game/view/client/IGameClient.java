@@ -7,7 +7,6 @@ package game.view.client;
 
 import game.Player.Player;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Interface IGameClient.
  */

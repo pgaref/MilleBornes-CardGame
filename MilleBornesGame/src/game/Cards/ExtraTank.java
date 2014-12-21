@@ -5,7 +5,6 @@
  */
 package game.Cards;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class ExtraTank.
  *

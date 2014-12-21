@@ -4,29 +4,19 @@
  */
 package game.view.panels;
 
-import game.CardCollection.AbstractPile;
-import game.CardCollection.DrawPile;
-import game.CardCollection.NotSupportedOperationException;
 import game.Cards.Card;
 import game.Cards.EmptyCard;
 import game.Player.Player;
 import game.master.GameMaster;
-
 import java.awt.BorderLayout;
-import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Point;
-import java.awt.Rectangle;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import javax.swing.ImageIcon;
 
-
-// TODO: Auto-generated Javadoc
 /**
  * This class represents the Central Panel of the view with the cards
  * It Contains a HotizantalViewPanel for the Draw and the Discard Piles.
@@ -108,17 +98,6 @@ public class CenterPanel extends javax.swing.JPanel {
     }
     
 
-    /**
-     * Change the player.
-     
-    private void changeThePlayer(){
-       
-        this.jPanel1.removeAll();
-        
-        this.jPanel1.revalidate();
-        this.jPanel1.repaint();
-        
-    }*/
     
     /**
      * Sets the cards.

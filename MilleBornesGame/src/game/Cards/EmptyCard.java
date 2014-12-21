@@ -6,11 +6,10 @@
 
 package game.Cards;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class EmptyCard.
  *
- * @author pgaref
+ * @author Author
  */
 public class EmptyCard extends Card {
     

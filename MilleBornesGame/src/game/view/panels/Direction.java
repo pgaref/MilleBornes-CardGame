@@ -6,7 +6,6 @@ package game.view.panels;
 
 import java.awt.Point;
 
-// TODO: Auto-generated Javadoc
 /**
  * This class represents the Direction of the Cards in the VIEW
  * Used to place the cards in the correct space.
@@ -15,15 +14,9 @@ import java.awt.Point;
  */
 public enum Direction {
     
-    /** The up. */
-    UP,
-/** The down. */
-DOWN,
-/** The left. */
-LEFT,
-/** The right. */
-RIGHT;
-    
+	/** The Direction defined. */
+	UP,	DOWN,	LEFT,	RIGHT;
+
     /**
      * Gets the point.
      *

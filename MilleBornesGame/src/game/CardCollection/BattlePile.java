@@ -12,7 +12,6 @@ import game.Cards.Safety;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class BattlePile.
  *

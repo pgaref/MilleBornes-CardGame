@@ -5,7 +5,6 @@
  */
 package game.CardCollection;
 
-// TODO: Auto-generated Javadoc
 /**
  * A special type of exception indicating that a card collection is not
  * of the same type with another one!.

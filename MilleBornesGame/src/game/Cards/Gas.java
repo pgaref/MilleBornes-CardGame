@@ -3,7 +3,6 @@
  */
 package game.Cards;
 
-// TODO: Auto-generated Javadoc
 /**
  * This abstract class represents a Gas Card by encapsulating its attributes
  * such as its credits .

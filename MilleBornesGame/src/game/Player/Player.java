@@ -133,7 +133,7 @@ public class Player {
     		return false;
     	}
     	//There is a Hazard in the Battle Pile!!
-    	if(this.hasHazard() == false){
+    	if(this.hasHazard() == true){
     		System.out.println("You need to fix that Hazard first!!!");
     		return false;
     	}
@@ -163,9 +163,11 @@ public class Player {
         return true;        
     }
     private boolean hasHazard() {
-		if(this.getBattle().getLastCard() instanceof Hazard)
+		if((this.getBattle().getCards().isEmpty()))
 			return false;
-		return true;
+		if ((this.getBattle().getLastCard() instanceof Hazard))
+			return true;
+		return false;
 	}
 
 	public boolean hasPriorityCard() {

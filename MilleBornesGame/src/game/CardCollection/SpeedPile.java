@@ -11,7 +11,6 @@ import game.Cards.SpeedLimit;
 
 import java.util.ArrayList;
 
-// TODO: Auto-generated Javadoc
 /**
  * The Class SpeedPile.
  *
