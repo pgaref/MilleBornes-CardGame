@@ -159,7 +159,6 @@ public class GameInfoPanel extends javax.swing.JPanel {
         jPanel1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
 
         playButton.setText("Play");
-        //playButton.setEnabled(false);
         playButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 playButtonActionPerformed(evt);
@@ -168,11 +167,6 @@ public class GameInfoPanel extends javax.swing.JPanel {
         
         passButton.setText("Pass");
         passButton.setEnabled(false);
-        /*passButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                passButtonActionPerformed(evt);
-            }
-        });*/
 
         throwCards.setText("Dismiss Card");
         throwCards.addActionListener(new java.awt.event.ActionListener() {
@@ -264,8 +258,7 @@ public class GameInfoPanel extends javax.swing.JPanel {
         
         try{
         	
-        	if(game.playerSubmitsCard(card)){
-        		
+        	if(game.playerSubmitsCard(card)){		
         		//if player throws a Safety Card, player plays again
         		if(!(card instanceof Safety) )
         			getPlayers().changePlayerTurn();
@@ -274,8 +267,7 @@ public class GameInfoPanel extends javax.swing.JPanel {
         			players.currPlayerDraw();
         		}
         		//update Panel Stats anyway
-        		this.updatePlayerPoints();
-        		
+        		this.updatePlayerPoints();    		
         	}
         	
         }catch(NotSupportedOperationException ex){

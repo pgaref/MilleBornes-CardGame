@@ -16,6 +16,7 @@ import java.awt.event.MouseListener;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.border.Border;
 
 // TODO: Auto-generated Javadoc
 /**
@@ -44,7 +45,7 @@ public class ViewCard extends JLabel implements MouseListener{
     private Direction direction;
     
     /** The not move. */
-    private boolean notMove;
+    private boolean selectable;
     
     /** The parent. */
     private HorizontalViewCardPanel parent = null;
@@ -59,7 +60,7 @@ public class ViewCard extends JLabel implements MouseListener{
      */
     public ViewCard(Card _card,Point _origin, Direction _direction,String imagepath){
         this.card = _card;
-        this.notMove = false;
+        this.selectable = false;
         this.direction = _direction;
         this.raised = false;
         this.origin = new Point(_origin.x , _origin.y);
@@ -86,7 +87,7 @@ public class ViewCard extends JLabel implements MouseListener{
      */
     public ViewCard(Card _card,Point _origin, Direction _direction,String imagepath, HorizontalViewCardPanel _parent){
         this.card = _card;
-        this.notMove = true;
+        this.selectable = true;
         parent = _parent;
         this.direction = _direction;
         this.raised = false;
@@ -127,21 +128,18 @@ public class ViewCard extends JLabel implements MouseListener{
     @Override
     public void mouseClicked(MouseEvent e) {}
 
-    /* (non-Javadoc)
-     * @see java.awt.event.MouseListener#mousePressed(java.awt.event.MouseEvent)
-     */
+    
     @Override
     public void mousePressed(MouseEvent e) {
-    	//System.out.println("Card Direction "+ this.direction);
     	
-        if(this.isNotMove()){
+        if(this.isSelectable()){
             if(this.parent != null){
                 this.parent.resetAllCards();
-                moveCard(0);             
+                selectCard();             
             }
             return;
         }
-        moveCard(0);
+        selectCard();
 
     }
 
@@ -154,18 +152,21 @@ public class ViewCard extends JLabel implements MouseListener{
     }
     
     /**
-     * Move card.
-     *
+     * Method called when a user Selects a card. 
+     *This method also highlights the card with yellow when its selected
      * @param points the points
      */
-    private void moveCard(int points){
+    private void selectCard(){
         if(isRaised()){
-            this.setBounds(origin.x , origin.y, size.width, size.height);
+//            this.setBounds(origin.x , origin.y, size.width, size.height);
+        	this.setBorder(null);
             raised = false;
         }
         else{
-            this.setBounds(origin.x + this.direction.getPoint().x, origin.y + this.direction.getPoint().y + points, size.width, size.height);
-            raised = true;
+            //this.setBounds(origin.x + this.direction.getPoint().x, origin.y + this.direction.getPoint().y + points, size.width, size.height);
+        	Border myBorder = BorderFactory.createLineBorder(Color.YELLOW,5);
+        	this.setBorder(myBorder);
+        	raised = true;
         }
     }
     
@@ -190,19 +191,19 @@ public class ViewCard extends JLabel implements MouseListener{
     /**
      * Checks if is not move.
      *
-     * @return the notMove
+     * @return the selectable
      */
-    public boolean isNotMove() {
-        return notMove;
+    public boolean isSelectable() {
+        return selectable;
     }
 
     /**
-     * Sets the not move.
+     * Sets the card ability to be Selected.
      *
-     * @param notMove the notMove to set
+     * @param a a boolean variable
      */
-    public void setNotMove(boolean notMove) {
-        this.notMove = notMove;
+    public void setSelectable(boolean b) {
+        this.selectable = b;
     }
 
     /**
