@@ -35,9 +35,6 @@ public class GameMaster implements Game{
     /** The curr player. */
     private Player currPlayer;
     
-    /** The state. */
-    private GameState state;
-    
     /** The Winner. */
     private Player Winner;
     
@@ -63,46 +60,10 @@ public class GameMaster implements Game{
     	
         this.deck = new Deck(one, two);
         
-        this.state = GameState.WAITFORNAMES;
-        
         this.currPlayer = deck.getP1();
         
         this.client = c;
     }
-
-    /**
-     * Instantiates a new game master.
-     *
-     * @param one the one
-     * @param two the two
-     
-    public GameMaster(String one, String two) {
-    	
-        this.deck = new Deck(one, two);
-        System.out.println("~~ Init GameMaster: \n"+ deck.toString());
-        
-        this.state = GameState.WAITFORNAMES;
-        
-        this.currPlayer = deck.getP1();
-    }
-    */
-    
-    /**
-     * Instantiates a new game master.
-     *
-     * @param one the one
-     * @param two the two
-     * @param v the v
-     
-    public GameMaster(String one, String two, JFrame v) {
-    	
-        this.deck = new Deck(one, two);
-        
-        this.state = GameState.WAITFORNAMES;
-        
-        this.currPlayer = deck.getP1();
-        this.view = v;
-    }*/
     
     
     /**
@@ -412,27 +373,6 @@ public class GameMaster implements Game{
 	public void setCurrPlayer(Player currPlayer) {
 		this.currPlayer = currPlayer;
 	}
-
-
-	/**
-	 * Gets the state.
-	 *
-	 * @return the state
-	 */
-	public GameState getState() {
-		return state;
-	}
-
-
-	/**
-	 * Sets the state.
-	 *
-	 * @param state the state to set
-	 */
-	public void setState(GameState state) {
-		this.state = state;
-	}
-
 
 	/**
 	 * Gets the winner.

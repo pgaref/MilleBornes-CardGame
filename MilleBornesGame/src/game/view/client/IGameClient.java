@@ -13,26 +13,10 @@ import game.Player.Player;
 public interface IGameClient {
     
     /**
-     * Show cards window.
-     *
-     * @return the player
-     */
-    public Player showCardsWindow();
-    
-    /**
-     * Skip player.
-     */
-    public void skipPlayer();
-    
-    /**
      * Change player.
      */
     public void changePlayer();
     
-    /**
-     * New round.
-     */
-    public void newRound();
     
     /**
      * Show winner panel.

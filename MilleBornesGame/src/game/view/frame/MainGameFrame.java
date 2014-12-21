@@ -79,14 +79,8 @@ public class MainGameFrame extends javax.swing.JFrame implements IGameClient{
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainGameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainGameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainGameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainGameFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+        	ex.printStackTrace();
         }
 
         /* Create and display the form */
@@ -96,11 +90,7 @@ public class MainGameFrame extends javax.swing.JFrame implements IGameClient{
             }
         });
     }
-    
-    
-    /* (non-Javadoc)
-     * @see game.view.client.IGameClient#showWinnerPanel(java.lang.String)
-     */
+
 	@Override
 	public void showWinnerPanel(String _winner) {
 		
@@ -117,37 +107,11 @@ public class MainGameFrame extends javax.swing.JFrame implements IGameClient{
 
 	}
 
-    /* (non-Javadoc)
-     * @see game.view.client.IGameClient#showCardsWindow()
-     */
-    @Override
-    public Player showCardsWindow() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /* (non-Javadoc)
-     * @see game.view.client.IGameClient#skipPlayer()
-     */
-    @Override
-    public void skipPlayer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /* (non-Javadoc)
-     * @see game.view.client.IGameClient#changePlayer()
-     */
     @Override
     public void changePlayer() {
     	this.gameinfo.changePlayer();
     }
 
-    /* (non-Javadoc)
-     * @see game.view.client.IGameClient#newRound()
-     */
-    @Override
-    public void newRound() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
     
 }
