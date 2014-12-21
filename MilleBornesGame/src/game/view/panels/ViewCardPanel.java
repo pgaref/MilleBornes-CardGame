@@ -24,9 +24,6 @@ public class ViewCardPanel extends JLayeredPane {
     /** The player. */
     private Player player;
     
-    /** The is mirror. */
-    private boolean isMirror;
-    
     /** The image_dir. */
     private String image_dir;
     
@@ -37,24 +34,13 @@ public class ViewCardPanel extends JLayeredPane {
      * Instantiates a new view card panel.
      *
      * @param _player the _player
-     * @param _isMirror the _is mirror
      */
-    public ViewCardPanel(Player _player,boolean _isMirror){
+    public ViewCardPanel(Player _player){
         this.player = _player;
-        this.isMirror = _isMirror;
         name = new JLabel(_player.getName());
     }
     
-   /**
-    * Instantiates a new view card panel.
-    *
-    * @param _isMirror the _is mirror
-    */
-   public ViewCardPanel(boolean _isMirror){
-        this.player = null;
-        this.isMirror = _isMirror;
-    }
-    
+
     /**
      * Change current player color.
      */
@@ -108,15 +94,6 @@ public class ViewCardPanel extends JLayeredPane {
      */
     public void setImage_dir(String image_dir) {
         this.image_dir = image_dir;
-    }
-
-    /**
-     * Checks if is checks if is mirror.
-     *
-     * @return the isMirror
-     */
-    public boolean isIsMirror() {
-        return isMirror;
     }
     
     /**

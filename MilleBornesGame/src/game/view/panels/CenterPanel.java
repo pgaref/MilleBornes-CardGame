@@ -51,7 +51,7 @@ public class CenterPanel extends javax.swing.JPanel {
         this.game = _game;
         f = theFrame;
         p = this.game.getFirstPlayer();
-        panel = new HorizontalViewCardPanel(p, false);
+        panel = new HorizontalViewCardPanel(p);
         
         panel.setMaximumSize(new Dimension(400, 140));
         panel.setPreferredSize(new Dimension(400, 140));

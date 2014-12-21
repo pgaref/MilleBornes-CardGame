@@ -18,7 +18,6 @@ import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.border.Border;
 
-// TODO: Auto-generated Javadoc
 /**
  * This class the View of a Single Card.
  * Implemented a raised functionality and load image graphics
@@ -41,9 +40,6 @@ public class ViewCard extends JLabel implements MouseListener{
     /** The origin. */
     private Point origin;
     
-    /** The direction. */
-    private Direction direction;
-    
     /** The not move. */
     private boolean selectable;
     
@@ -58,10 +54,9 @@ public class ViewCard extends JLabel implements MouseListener{
      * @param _direction the _direction
      * @param imagepath the imagepath
      */
-    public ViewCard(Card _card,Point _origin, Direction _direction,String imagepath){
+    public ViewCard(Card _card,Point _origin,String imagepath){
         this.card = _card;
         this.selectable = false;
-        this.direction = _direction;
         this.raised = false;
         this.origin = new Point(_origin.x , _origin.y);
         this.card_image = new ImageIcon(getClass().getResource(_card.getImagePath()));
@@ -85,11 +80,10 @@ public class ViewCard extends JLabel implements MouseListener{
      * @param imagepath the imagepath
      * @param _parent the _parent
      */
-    public ViewCard(Card _card,Point _origin, Direction _direction,String imagepath, HorizontalViewCardPanel _parent){
+    public ViewCard(Card _card,Point _origin,String imagepath, HorizontalViewCardPanel _parent){
         this.card = _card;
         this.selectable = true;
         parent = _parent;
-        this.direction = _direction;
         this.raised = false;
         this.origin = new Point(_origin.x , _origin.y);
         this.card_image = new ImageIcon(getClass().getResource(imagepath + _card.toString()));

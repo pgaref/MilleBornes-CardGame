@@ -68,10 +68,10 @@ public class PlayersPanel extends JPanel {
             this.remove(down);
             this.remove(down2);
         }
-        this.down = new HorizontalViewCardPanel(game.getFirstPlayer(), false, true);
-        this.down2 = new HorizontalViewCardPanel(game.getFirstPlayer(), false);
-        this.up = new HorizontalViewCardPanel(game.getSecondPlayer(), true);
-        this.up2 = new HorizontalViewCardPanel(game.getSecondPlayer(), true, true);
+        this.down = new HorizontalViewCardPanel(game.getFirstPlayer(), true);
+        this.down2 = new HorizontalViewCardPanel(game.getFirstPlayer());
+        this.up = new HorizontalViewCardPanel(game.getSecondPlayer());
+        this.up2 = new HorizontalViewCardPanel(game.getSecondPlayer(), true);
         
         //Player 1 Starts!!!
         activepanel = down2;
@@ -112,8 +112,8 @@ public class PlayersPanel extends JPanel {
         if(up.getPlayer().getName().equals(current.getName())){
             activepanel = up;
             
-            up.RepaintCards();
-            up2.RepaintExtraCards();
+            up.paintHandCards();
+            up2.paintExtraPileCards();
             up.changeCurrentPlayerColor();
             up2.changeCurrentPlayerColor();
             
@@ -124,8 +124,8 @@ public class PlayersPanel extends JPanel {
         else if(down.getPlayer().getName().equals(current.getName())){
             activepanel = down2;
             
-            down.RepaintExtraCards();
-        	down2.RepaintCards();
+            down.paintExtraPileCards();
+        	down2.paintHandCards();
             down.changeCurrentPlayerColor();;
             down2.changeCurrentPlayerColor();
             
@@ -146,13 +146,13 @@ public class PlayersPanel extends JPanel {
         
         if(up.getPlayer().getName().equals(current.getName())){
             
-        	up.RepaintCards();
-            up2.RepaintExtraCards();
+        	up.paintHandCards();
+            up2.paintExtraPileCards();
         }
         else if(down.getPlayer().getName().equals(current.getName())){
             
-        	down.RepaintExtraCards();
-        	down2.RepaintCards();
+        	down.paintExtraPileCards();
+        	down2.paintHandCards();
             
         }
     }
