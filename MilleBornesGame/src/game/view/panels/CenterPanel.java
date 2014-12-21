@@ -31,14 +31,10 @@ public class CenterPanel extends javax.swing.JPanel {
     /** The panel. */
     private HorizontalViewCardPanel panel;
     
-    /** The players count. */
-    private int playersCount = 0;
     
     /** The p. */
     private Player p;
     
-    /** The f. */
-    private PlayersPanel f;
     
     /**
      * Instantiates a new center panel.
@@ -49,7 +45,6 @@ public class CenterPanel extends javax.swing.JPanel {
     public CenterPanel(GameMaster _game , PlayersPanel theFrame) {
         initComponents();
         this.game = _game;
-        f = theFrame;
         p = this.game.getFirstPlayer();
         panel = new HorizontalViewCardPanel(p);
         
@@ -78,18 +73,8 @@ public class CenterPanel extends javax.swing.JPanel {
         EmptyCard tmp = new EmptyCard();
         this.setCard(tmp);
     }
-
     
-    /**
-     * Clear all.
-     */
-    public void clearAll(){
 
-    }
-    
-    /* (non-Javadoc)
-     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
-     */
     @Override
     protected void paintComponent(Graphics g){
         super.paintComponent(g);

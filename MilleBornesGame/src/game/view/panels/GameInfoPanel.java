@@ -246,7 +246,7 @@ public class GameInfoPanel extends javax.swing.JPanel {
      *
      * @param evt the evt
      */
-    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playButtonActionPerformed
+    private void playButtonActionPerformed(java.awt.event.ActionEvent evt) {
        
     	if(!game.getCurrentPlayer().hasDrawnCard()){
     		System.out.println("Please draw a card first!");

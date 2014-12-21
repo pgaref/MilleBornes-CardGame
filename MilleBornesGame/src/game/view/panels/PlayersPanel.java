@@ -96,14 +96,7 @@ public class PlayersPanel extends JPanel {
     
     
     /**
-     * Clear all.
-     */
-    public void clearAll(){
-        center.clearAll();
-    }
-    
-    /**
-     *  current player Pass
+     * Change current player Turn
      */
     public void changePlayerTurn(){
         Player current = game.getCurrentPlayer();
@@ -157,9 +150,6 @@ public class PlayersPanel extends JPanel {
         }
     }
     
-    /* (non-Javadoc)
-     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
-     */
     @Override
     public void paintComponent(Graphics g){
         super.paintComponent(g);
