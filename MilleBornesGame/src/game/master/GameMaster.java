@@ -26,7 +26,7 @@ import javax.swing.JFrame;
  * 
  * @author Author
  */
-public class GameMaster implements Game{
+public class GameMaster{
 
     
     /** The client. */
@@ -276,48 +276,6 @@ public class GameMaster implements Game{
     		return true;
     	}
     	return false;
-    }
-
-    
-    
-    /* (non-Javadoc)
-     * @see game.master.Game#Start()
-     */
-    @Override
-    public void Start() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /* (non-Javadoc)
-     * @see game.master.Game#Stop()
-     */
-    @Override
-    public void Stop() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /* (non-Javadoc)
-     * @see game.master.Game#Pause()
-     */
-    @Override
-    public void Pause() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /* (non-Javadoc)
-     * @see game.master.Game#Resume()
-     */
-    @Override
-    public void Resume() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    /* (non-Javadoc)
-     * @see game.master.Game#Restart()
-     */
-    @Override
-    public void Restart() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     /**
