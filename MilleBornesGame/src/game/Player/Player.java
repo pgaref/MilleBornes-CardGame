@@ -36,7 +36,7 @@ public class Player {
     private AbstractPile battle;
     private AbstractPile speed;
     private AbstractPile distance;
-    private AbstractPile satefy;
+    private AbstractPile safety;
     
     
     /** The has started. */
@@ -65,7 +65,7 @@ public class Player {
         this.speed = new SpeedPile();
         this.distance = new DistancePile();
         this.battle = new BattlePile();
-        this.satefy = new SafetyPile();
+        this.safety = new SafetyPile();
         
     }
 	
@@ -172,7 +172,7 @@ public class Player {
 
 	public boolean hasPriorityCard() {
 
-    	for(Card tmp : this.getSatefy().getCards()){
+    	for(Card tmp : this.getSafety().getCards()){
     		if(tmp instanceof Priority)
     			return true;
     	}
@@ -206,7 +206,12 @@ public class Player {
      * @return true, if is able to move
      */
     public boolean isAbleToMove(){
-        return this.getBattle().getCards().size() > 0;
+    	if(this.getBattle().cards.size() == 0 )
+    		return true;
+    	else if( this.getBattle().getLastCard() instanceof Hazard)
+    		return false;
+    	return true;
+    	
     }
 
     /**
@@ -309,21 +314,21 @@ public class Player {
     }
 
     /**
-     * Gets the satefy.
+     * Gets the safety.
      *
-     * @return the satefy
+     * @return the safety
      */
-    public AbstractPile getSatefy() {
-        return satefy;
+    public AbstractPile getSafety() {
+        return safety;
     }
 
     /**
-     * Sets the satefy.
+     * Sets the safety.
      *
-     * @param satefy the satefy to set
+     * @param safety the safety to set
      */
-    public void setSatefy(AbstractPile satefy) {
-        this.satefy = satefy;
+    public void setSafety(AbstractPile safety) {
+        this.safety = safety;
     }
 
     /**
@@ -359,7 +364,7 @@ public class Player {
 		return hasDrawn;
 	}
 	
-	public void changeDrawnCard(boolean b) {
+	public void sethasDrawnCard(boolean b) {
 		this.hasDrawn = b;
 	}
 	
@@ -370,7 +375,7 @@ public class Player {
 			tmp.append(c+"\n");
 		
 		tmp.append( "\n Safety: ");
-		for(Card c: this.getSatefy().cards )
+		for(Card c: this.getSafety().cards )
 			tmp.append( c+"\n" );
 
 		tmp.append( "\n Distance: ");

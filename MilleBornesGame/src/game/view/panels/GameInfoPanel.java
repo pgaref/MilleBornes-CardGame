@@ -263,7 +263,7 @@ public class GameInfoPanel extends javax.swing.JPanel {
         		if(!(card instanceof Safety) )
         			getPlayers().changePlayerTurn();
         		else{
-        			game.getCurrentPlayer().changeDrawnCard(false);
+        			game.getCurrentPlayer().sethasDrawnCard(false);
         			players.currPlayerDraw();
         		}
         		//update Panel Stats anyway

@@ -68,7 +68,11 @@ public class Deck {
         this.drawCards.setCards(allCards);
         
     }
-    
+    /**
+     * Method that initializes all the cards according to the rules
+     * The cards are stored in an ArrayList and then they are shuffled
+     * @return the ArrayList with the shuffled cards
+     */
     public ArrayList<Card> initAllCards(){
     	ArrayList<Card> all = new ArrayList<Card>();
     	

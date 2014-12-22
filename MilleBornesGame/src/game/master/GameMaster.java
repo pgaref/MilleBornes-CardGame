@@ -32,14 +32,11 @@ public class GameMaster{
     /** The client. */
     private IGameClient client;
     
-    /** The curr player. */
+    /** The current player. */
     private Player currPlayer;
     
     /** The Winner. */
     private Player Winner;
-    
-    /** The last played. */
-    private Player lastPlayed;
     
     /** The deck. */
     private Deck deck;
@@ -118,7 +115,7 @@ public class GameMaster{
     {
     	boolean foundMatch = false;
     	/**
-		 * ALL Functionality goes here!!!
+		 * ALL Game Rules that have to do with card matchings go here!!!
 		 */
 		
     	if(c instanceof Distance){
@@ -132,7 +129,7 @@ public class GameMaster{
     		
     	}
     	else if(c instanceof Safety ){
-    		this.currPlayer.getSatefy().addCard(c);
+    		this.currPlayer.getSafety().addCard(c);
     		this.currPlayer.getHand().remove(c);
     		
     		//Empty Piles Case
@@ -169,7 +166,7 @@ public class GameMaster{
     			return false;
     		}
     		//Check if there is a safety card preventing us to throw the card!
-    		for(Card tmp : other.getSatefy().getCards()){
+    		for(Card tmp : other.getSafety().getCards()){
     			if(tmp.match(c)){
     				System.out.println("Safety Card prevents that action!!!");
     				return false;
@@ -265,14 +262,14 @@ public class GameMaster{
     	
     	//If there are no cards left at the Draw Pile!
     	if(this.deck.getDrawCards().getCards().isEmpty()){
-    		this.currPlayer.changeDrawnCard(true);
+    		this.currPlayer.sethasDrawnCard(true);
     		return true;
     	}
     	//In any other case
     	else if(!this.currPlayer.hasDrawnCard() && (this.currPlayer.getHand().size() == 6)){
     		Card tmp = this.deck.getDrawCards().getCards().remove(this.deck.getDrawCards().getCards().size()-1);
     		this.currPlayer.getHand().add(tmp);
-    		this.currPlayer.changeDrawnCard(true);
+    		this.currPlayer.sethasDrawnCard(true);
     		return true;
     	}
     	return false;
@@ -313,15 +310,6 @@ public class GameMaster{
     }
     
 
-	/**
-	 * Gets the curr player.
-	 *
-	 * @return the currPlayer
-	 */
-	public Player getCurrPlayer() {
-		return currPlayer;
-	}
-
 
 	/**
 	 * Sets the curr player.
@@ -349,26 +337,6 @@ public class GameMaster{
 	 */
 	public void setWinner(Player winner) {
 		Winner = winner;
-	}
-
-
-	/**
-	 * Gets the last played.
-	 *
-	 * @return the lastPlayed
-	 */
-	public Player getLastPlayed() {
-		return lastPlayed;
-	}
-
-
-	/**
-	 * Sets the last played.
-	 *
-	 * @param lastPlayed the lastPlayed to set
-	 */
-	public void setLastPlayed(Player lastPlayed) {
-		this.lastPlayed = lastPlayed;
 	}
 
 

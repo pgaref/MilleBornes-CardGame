@@ -156,7 +156,7 @@ public class HorizontalViewCardPanel extends ViewCardPanel {
 		}
         
         int count = 0;
-        for(Card c : super.getPlayer().getSatefy().getCards()){
+        for(Card c : super.getPlayer().getSafety().getCards()){
         	System.out.println("Adding Player: "+super.getPlayer().getName()+ " Extra Card: "+ c);
             ViewCard card = new ViewCard(c,origin,super.getImage_dir());
             card.setSelectable(true);
@@ -286,7 +286,7 @@ public class HorizontalViewCardPanel extends ViewCardPanel {
 		}
 		
         int count = 0;
-        for(Card c : super.getPlayer().getSatefy().getCards()){
+        for(Card c : super.getPlayer().getSafety().getCards()){
         	System.out.println("Adding Player: "+super.getPlayer().getName()+ " Extra Card: "+ c);
             ViewCard card = new ViewCard(c,origin,super.getImage_dir());
             card.setSelectable(true);

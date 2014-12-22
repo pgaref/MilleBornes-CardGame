@@ -100,7 +100,7 @@ public class PlayersPanel extends JPanel {
      */
     public void changePlayerTurn(){
         Player current = game.getCurrentPlayer();
-        current.changeDrawnCard(false);
+        current.sethasDrawnCard(false);
         
         if(up.getPlayer().getName().equals(current.getName())){
             activepanel = up;
