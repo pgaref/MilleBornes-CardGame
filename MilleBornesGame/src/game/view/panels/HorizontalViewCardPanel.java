@@ -224,9 +224,6 @@ public class HorizontalViewCardPanel extends ViewCardPanel {
         }
     }
     
-    /* (non-Javadoc)
-     * @see game.view.panels.ViewCardPanel#changePlayer(game.Player.Player)
-     */
     @Override
     public void changePlayer(Player p){
         super.setPlayer(p);
@@ -375,7 +372,7 @@ public class HorizontalViewCardPanel extends ViewCardPanel {
 			return;
 		}
 		int i = 0;
-		Point or = new Point(300, 25);
+		Point or = new Point(300, 0);
 		ViewCard card = new ViewCard(new EmptyCard(), or,
 				super.getImage_dir());
 		card.setSelectable(true);

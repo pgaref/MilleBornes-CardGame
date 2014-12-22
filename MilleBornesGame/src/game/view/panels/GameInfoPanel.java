@@ -168,7 +168,7 @@ public class GameInfoPanel extends javax.swing.JPanel {
         passButton.setText("Pass");
         passButton.setEnabled(false);
 
-        throwCards.setText("Dismiss Card");
+        throwCards.setText("Throw Card");
         throwCards.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 throwCardsActionPerformed(evt);

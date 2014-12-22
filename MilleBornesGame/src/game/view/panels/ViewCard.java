@@ -98,9 +98,7 @@ public class ViewCard extends JLabel implements MouseListener{
         this.addMouseListener(this);
     }
     
-    /* (non-Javadoc)
-     * @see javax.swing.JComponent#paintComponent(java.awt.Graphics)
-     */
+
     @Override
     protected void paintComponent(Graphics g) {
         super.paintComponent(g);
@@ -115,10 +113,7 @@ public class ViewCard extends JLabel implements MouseListener{
     public Card getCard() {
         return card;
     }
-
-    /* (non-Javadoc)
-     * @see java.awt.event.MouseListener#mouseClicked(java.awt.event.MouseEvent)
-     */
+    
     @Override
     public void mouseClicked(MouseEvent e) {}
 
@@ -152,33 +147,22 @@ public class ViewCard extends JLabel implements MouseListener{
      */
     private void selectCard(){
         if(isRaised()){
-//            this.setBounds(origin.x , origin.y, size.width, size.height);
         	this.setBorder(null);
             raised = false;
         }
         else{
-            //this.setBounds(origin.x + this.direction.getPoint().x, origin.y + this.direction.getPoint().y + points, size.width, size.height);
-        	Border myBorder = BorderFactory.createLineBorder(Color.YELLOW,5);
+         	Border myBorder = BorderFactory.createLineBorder(Color.YELLOW,5);
         	this.setBorder(myBorder);
         	raised = true;
         }
     }
     
-    /* (non-Javadoc)
-     * @see java.awt.event.MouseListener#mouseReleased(java.awt.event.MouseEvent)
-     */
     @Override
     public void mouseReleased(MouseEvent e){}
 
-    /* (non-Javadoc)
-     * @see java.awt.event.MouseListener#mouseEntered(java.awt.event.MouseEvent)
-     */
     @Override
     public void mouseEntered(MouseEvent e) {}
 
-    /* (non-Javadoc)
-     * @see java.awt.event.MouseListener#mouseExited(java.awt.event.MouseEvent)
-     */
     @Override
     public void mouseExited(MouseEvent e) {}
 

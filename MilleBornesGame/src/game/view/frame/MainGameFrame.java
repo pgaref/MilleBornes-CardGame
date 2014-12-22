@@ -9,6 +9,7 @@ import game.Player.Player;
 import game.master.GameMaster;
 import game.view.client.IGameClient;
 import game.view.panels.GameInfoPanel;
+import game.view.panels.InitPlayers;
 import game.view.panels.PlayersPanel;
 
 import java.awt.BorderLayout;
@@ -42,15 +43,15 @@ public class MainGameFrame extends javax.swing.JFrame implements IGameClient{
    
     public MainGameFrame() {
         super("MilleBornes Game");
-   //     InitPlayers players = new InitPlayers(null,true);
-   //     Object [] playerNames =  players.getPlayers().toArray();
-//        this.p1 = String.valueOf(playerNames[0]);
-//        this.p2 = String.valueOf(playerNames[1]);
-   //     this.game = new GameMaster(String.valueOf(playerNames[0]), String.valueOf(playerNames[1]));
-        
-        p1 = "a";
-        p2 = "b";
+        InitPlayers players = new InitPlayers(null,true);
+        Object [] playerNames =  players.getPlayers().toArray();
+        this.p1 = String.valueOf(playerNames[0]);
+        this.p2 = String.valueOf(playerNames[1]);
         this.game = new GameMaster(this, p1, p2);
+        
+//        p1 = "a";
+//        p2 = "b";
+//        this.game = new GameMaster(this, p1, p2);
         
         this.playersSpace = new PlayersPanel(game);
         this.gameinfo = new GameInfoPanel(game,playersSpace);
@@ -61,6 +62,7 @@ public class MainGameFrame extends javax.swing.JFrame implements IGameClient{
         this.setResizable(false);
         this.setVisible(true);
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        this.setSize(1024, 800);
         
     }
 
